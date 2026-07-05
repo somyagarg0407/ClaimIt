@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import Home from "@/pages/Home";
 import Discover from "@/pages/Discover";
 import SchemeDetails from "@/pages/SchemeDetails";
+import Login from "@/pages/Login";
 import ComingSoon from "@/pages/ComingSoon";
 
 /**
@@ -20,6 +21,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/discover" element={<Discover />} />
           <Route path="/schemes/:slug" element={<SchemeDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<ComingSoon title="Register" />} />
+          <Route path="/forgot-password" element={<ComingSoon title="Password Reset" />} />
           <Route path="/eligibility" element={<ComingSoon title="Eligibility" />} />
           <Route path="/claims" element={<ComingSoon title="My Claims" />} />
           <Route path="/help" element={<ComingSoon title="Help" />} />

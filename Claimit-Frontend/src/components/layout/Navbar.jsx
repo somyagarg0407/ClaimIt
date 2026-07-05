@@ -69,7 +69,7 @@ function Navbar() {
             <Bell className="h-[18px] w-[18px]" strokeWidth={2} />
           </button>
           <div className="mx-2 h-5 w-px bg-gray-200" />
-          <Button variant="ghost" size="sm">
+          <Button as={Link} to="/login" variant="ghost" size="sm">
             Login
           </Button>
           <Button variant="outline" size="sm">
@@ -103,7 +103,7 @@ function Navbar() {
               </a>
             ))}
             <div className="mt-3 flex flex-col gap-2 border-t border-gray-100 pt-4">
-              <Button variant="outline" size="sm">
+              <Button as={Link} to="/login" variant="outline" size="sm" onClick={() => setMobileOpen(false)}>
                 Login
               </Button>
               <Button size="sm">

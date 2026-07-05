@@ -21,8 +21,8 @@ export default {
           500: "#0096C7",
           600: "#0077B6",
           700: "#023E8A",
-          800: "#03045E",
-          900: "#03045E",
+          800: "#0077B6",
+          900: "#0077B6",
         },
       },
       fontFamily: {
@@ -31,16 +31,29 @@ export default {
         mono: ["'JetBrains Mono'", "monospace"],
       },
       fontSize: {
-        "display-xl": ["4.25rem", { lineHeight: "1.04", letterSpacing: "-0.03em" }],
-        "display-lg": ["3.25rem", { lineHeight: "1.08", letterSpacing: "-0.03em" }],
-        "display-md": ["2.5rem", { lineHeight: "1.12", letterSpacing: "-0.02em" }],
-        "display-sm": ["1.75rem", { lineHeight: "1.2", letterSpacing: "-0.015em" }],
+        "display-xl": [
+          "4.25rem",
+          { lineHeight: "1.04", letterSpacing: "-0.03em" },
+        ],
+        "display-lg": [
+          "3.25rem",
+          { lineHeight: "1.08", letterSpacing: "-0.03em" },
+        ],
+        "display-md": [
+          "2.5rem",
+          { lineHeight: "1.12", letterSpacing: "-0.02em" },
+        ],
+        "display-sm": [
+          "1.75rem",
+          { lineHeight: "1.2", letterSpacing: "-0.015em" },
+        ],
       },
       boxShadow: {
         soft: "0 1px 2px rgba(3, 4, 94, 0.04), 0 8px 24px -12px rgba(3, 4, 94, 0.10)",
         card: "0 1px 1px rgba(3, 4, 94, 0.03), 0 12px 32px -16px rgba(3, 4, 94, 0.14)",
         lift: "0 20px 48px -18px rgba(3, 4, 94, 0.22)",
-        "glow-brand": "0 0 0 1px rgba(0, 180, 216, 0.16), 0 16px 40px -16px rgba(0, 119, 182, 0.28)",
+        "glow-brand":
+          "0 0 0 1px rgba(0, 180, 216, 0.16), 0 16px 40px -16px rgba(0, 119, 182, 0.28)",
       },
       borderRadius: {
         xl: "0.875rem",
@@ -50,7 +63,8 @@ export default {
       backgroundImage: {
         "grid-faint":
           "linear-gradient(to right, rgba(3,4,94,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(3,4,94,0.045) 1px, transparent 1px)",
-        "brand-gradient": "linear-gradient(135deg, #03045E 0%, #0077B6 55%, #00B4D8 100%)",
+        "brand-gradient":
+          "linear-gradient(135deg, #0077B6 0%, #0077B6 55%, #00B4D8 100%)",
       },
       keyframes: {
         "fade-up": {
