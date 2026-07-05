@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import Home from "@/pages/Home";
+import Discover from "@/pages/Discover";
+import SchemeDetails from "@/pages/SchemeDetails";
 import ComingSoon from "@/pages/ComingSoon";
 
 /**
@@ -16,7 +18,8 @@ function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/discover" element={<ComingSoon title="Discover" />} />
+          <Route path="/discover" element={<Discover />} />
+          <Route path="/schemes/:slug" element={<SchemeDetails />} />
           <Route path="/eligibility" element={<ComingSoon title="Eligibility" />} />
           <Route path="/claims" element={<ComingSoon title="My Claims" />} />
           <Route path="/help" element={<ComingSoon title="Help" />} />

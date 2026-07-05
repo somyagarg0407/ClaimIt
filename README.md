@@ -1,132 +1,123 @@
-![HTML](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
-![Status](https://img.shields.io/badge/Status-Frontend%20Prototype-orange)
-# 🚀 ClaimIt
+# ClaimIt — Marketing Site
 
-A modern web application that helps users discover government welfare schemes they are eligible for based on their profile. Instead of manually searching through thousands of schemes, ClaimIt aims to simplify the process by providing personalized recommendations through a clean and intuitive interface.
+_Find. Understand. Claim What's Yours._
 
-> 🚧 **Current Status:** Frontend Prototype (Backend & AI Integration Planned)
+An AI-powered platform that helps Indian citizens discover the government
+schemes, scholarships, subsidies and pensions they're eligible for. This repo
+is the public marketing/landing site, built as a scalable base for the rest
+of the product (Discover, Eligibility, My Claims, Login/Register, etc.).
 
----
+## Stack
 
-## ✨ Features
+- **React 18** + **Vite 5**
+- **Tailwind CSS 3** — utility-first styling, brand tokens in `tailwind.config.js`
+- **shadcn/ui-style primitives** — hand-rolled `Button` / `Card` / `Badge` built
+  with `class-variance-authority`, following shadcn conventions so they're easy
+  to swap for the CLI-generated versions later if you adopt the full shadcn toolchain
+- **Framer Motion** — subtle fade-ups and scroll reveals only
+- **Lucide Icons**
+- **React Router 6** — route map ready for future pages
 
-- 🏛️ Government Scheme Discovery
-- 👤 Personalized User Profile
-- 📊 Eligibility Checker UI
-- 📂 Saved Schemes Dashboard
-- 📋 Claim Tracking Interface
-- ❓ Interactive Help Center
-- 📞 Contact & Support Section
-- 💬 Feedback Page
-- 📱 Fully Responsive Design
-- 🎨 Modern & Clean UI/UX
-
----
-
-## 📸 Preview
-
-The project currently includes multiple frontend screens such as:
-
-- 🏠 Discover Page
-- 📂 My Claims
-- ✅ Eligibility Checker
-- ❓ Help Center
-- 👤 User Profile Dashboard
-
-> *(Screenshots can be added here later.)*
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Purpose |
-|------------|---------|
-| HTML5 | Structure |
-| CSS3 | Styling & Animations |
-| JavaScript | Frontend Logic |
-
----
-
-## 📁 Current Project Structure
-
-```text
-ClaimIt/
-│
-├── index.html
-├── claims.html
-├── eligibility.html
-├── help.html
-├── assets/
-├── css/
-├── js/
-└── README.md
-```
-
-> *(Folder structure may evolve as backend development begins.)*
-
----
-
-## 🚀 Getting Started
-
-Clone the repository
+## Getting started
 
 ```bash
-git clone <repository-url>
+npm install
+npm run dev       # http://localhost:5173
+npm run build      # production build -> dist/
+npm run preview    # serve the production build locally
 ```
 
-Open the project
+## Project structure
 
-Simply open `index.html` in your browser or use **VS Code Live Server**.
+```
+src/
+  components/
+    ui/           Design-system primitives: Button, Card, Badge, Container,
+                  Section, Select, Accordion
+    layout/       Navbar, Footer — persistent across every page
+    shared/       Domain components reused across pages: SchemeCard, FeatureCard,
+                  ScoreRing (the eligibility-score gauge), EligibilityDashboard,
+                  SearchBar, CategoryChip, FilterPanel, RecommendationBanner,
+                  SchemeResultCard, EmptyState, Pagination
+    sections/     Landing-page-specific blocks: Hero, HowItWorks, Features,
+                  PopularSchemes, CTA
+  pages/          One component per route — Home, Discover and Scheme Details
+                  are fully built; the rest are ComingSoon placeholders (see below)
+  lib/
+    utils.js      cn() class-merging helper used by every component
+    schemes.js    Single source of truth for scheme data (SCHEMES, CATEGORIES,
+                  getSchemeBySlug, getRelatedSchemes) — both Discover and
+                  Scheme Details read from here so they can't drift out of sync
+  index.css       Tailwind layers, font setup, global base styles
+  App.jsx         Route map
+  main.jsx        Entry point
+```
 
----
+## Pages built so far
 
-## 🎯 Project Vision
+- **Home** (`/`) — marketing landing page.
+- **Discover** (`/discover`) — search, category chips, filters, AI match
+  banner, results grid with pagination.
+- **Scheme Details** (`/schemes/:slug`) — full scheme profile: overview,
+  eligibility, required documents, how-to-apply steps, FAQs, a sticky sidebar
+  summary, and related schemes. Reads its data from `lib/schemes.js` by slug
+  and shows a friendly not-found state (via the shared `EmptyState`) for an
+  unknown slug.
 
-Finding government schemes should not require searching through thousands of pages.
+`SchemeResultCard`'s "View Details" button and the related-schemes grid both
+link to `/schemes/:slug` using the existing `Button`/`Card` `as={Link}`
+pattern — no extra routing glue needed when a new scheme is added to the data
+file.
 
-ClaimIt aims to become a personalized government scheme recommendation platform that helps users discover, understand, and apply for schemes they are actually eligible for.
+## Design system
 
----
+All brand colors, type scale, shadows and radii live in `tailwind.config.js`
+under `theme.extend` — nothing is hard-coded as an arbitrary hex value in
+components. Stick to this palette when adding new UI:
 
-## 🚀 Future Improvements
+| Token         | Hex       | Use                                  |
+|---------------|-----------|---------------------------------------|
+| `brand-800`   | `#03045E` | Primary buttons, logo mark, headlines accent |
+| `brand-700`   | `#023E8A` | Hover states on primary                |
+| `brand-600`   | `#0077B6` | Links, highlighted text, icons         |
+| `brand-500`   | `#0096C7` | Secondary accents                      |
+| `brand-400`   | `#00B4D8` | Gradient endpoints, active states      |
+| `brand-300`/`200`/`100`/`50` | `#48CAE4`…`#CAF0F8` | Soft backgrounds, badges, borders |
+| `ink`         | `#000000` | Headings only (never gray)             |
 
-The current version focuses on the frontend prototype built during a hackathon.
+Body copy uses Tailwind's neutral `gray-500`/`gray-600`. Never introduce a
+color outside this table.
 
-Future updates will include:
+Type: `font-display` (Sora) for all headings, `font-sans` (Inter) for body
+copy, and `.tabular-mono` (JetBrains Mono) for every numeric data point —
+percentages, currency, counts. That mono treatment is intentional: it's the
+site's signature detail, tying every "data" moment (eligibility score, match
+%, benefit amount) back to the product's AI/data-driven identity. Keep using
+it whenever a new page surfaces a number.
 
-- 🔐 User Authentication
-- 🗄️ Database Integration
-- ⚙️ Backend using FastAPI / Node.js
-- 🤖 AI-powered Scheme Recommendations
-- 📡 Government Scheme API Integration
-- 📝 Real Application Submission
-- 📊 User Dashboard & Claim History
-- 🌐 Deployment
+## Extending with new pages
 
----
+The Navbar and Footer already link to the full future IA (`/discover`,
+`/eligibility`, `/claims`, `/help`, `/about`, `/contact`, legal pages).
+`/discover` and `/schemes/:slug` are now real pages; the rest still resolve to
+a shared `ComingSoon` placeholder registered in `App.jsx`. To ship one of
+those:
 
-## 💡 About This Project
+1. Build `src/pages/Eligibility.jsx` (for example) using the existing `ui/`
+   and `shared/` components — and `lib/schemes.js` if it needs scheme data.
+2. In `App.jsx`, swap `<ComingSoon title="Eligibility" />` for
+   `<Eligibility />` on the matching `<Route>`.
 
-This project was initially developed during a hackathon to validate the idea and demonstrate the user experience through a frontend prototype.
+No other wiring is required — navigation, footer links and layout are already
+in place.
 
-The backend, AI recommendation system, authentication, and API integrations are planned for future development.
+## Notes
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-## 👨‍💻 Author
-
-**Somya Garg**
-
-B.Tech Student | NIT Delhi
-
-Passionate about Backend Development, AI, Entrepreneurship, and building products that solve real-world problems.
-
-⭐ If you found this project interesting, consider giving it a star!
+- Login/Register are currently non-functional buttons in the Navbar — wire
+  them up to your auth flow when it's ready.
+- "My Claims" intentionally does **not** appear in the Navbar for logged-out
+  visitors, per the product brief; add it conditionally once auth state
+  exists.
+- Animations are intentionally restrained (fade-ups, hover lifts, one
+  scroll-triggered ring animation) — avoid adding floating/particle/3D
+  effects, per the design brief.

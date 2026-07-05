@@ -6,9 +6,9 @@ import { Card } from "@/components/ui/Card";
  * "Popular schemes" grid and reusable on the future Discover / Eligibility
  * pages wherever a scheme needs to be listed.
  */
-function SchemeCard({ icon: Icon, name, category, matchPercent, benefit }) {
+function SchemeCard({ icon: Icon, name, category, matchPercent, benefit, ...rest }) {
   return (
-    <Card hover className="group relative flex cursor-pointer flex-col gap-5 p-6">
+    <Card {...rest} hover className="group relative flex cursor-pointer flex-col gap-5 p-6">
       <div className="flex items-start justify-between">
         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
           <Icon className="h-5 w-5" strokeWidth={2} />

@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
-const Card = forwardRef(({ className, hover = false, ...props }, ref) => (
-  <div
+const Card = forwardRef(({ className, hover = false, as: Comp = "div", ...props }, ref) => (
+  <Comp
     ref={ref}
     className={cn(
       "rounded-2xl border border-gray-100 bg-white shadow-card",
