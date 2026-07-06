@@ -123,4 +123,4 @@ function FilterPanel({ values = DEFAULT_FILTERS, onChange, onReset }) {
   );
 }
 
-export { FilterPanel, DEFAULT_FILTERS };
+export { FilterPanel, DEFAULT_FILTERS, FILTER_FIELDS };
