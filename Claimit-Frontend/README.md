@@ -39,13 +39,14 @@ src/
     shared/       Domain components reused across pages: SchemeCard, FeatureCard,
                   ScoreRing (the eligibility-score gauge), EligibilityDashboard,
                   SearchBar, CategoryChip, FilterPanel, RecommendationBanner,
-                  SchemeResultCard, SavedSchemeCard, EmptyState, Pagination,
-                  AuthCard, AuthDivider, SocialLoginButton, PlaceholderPage
+                  SchemeResultCard, SavedSchemeCard, ClaimCard, EmptyState,
+                  Pagination, AuthCard, AuthDivider, SocialLoginButton,
+                  PlaceholderPage
     sections/     Landing-page-specific blocks: Hero, HowItWorks, Features,
                   PopularSchemes, CTA
   pages/          One component per route — Home, Discover, Scheme Details,
-                  Login, Eligibility and My Schemes are fully built; Profile,
-                  Notifications, Settings and My Claims are premium
+                  Login, Eligibility, My Schemes and My Claims are fully
+                  built; Profile, Notifications and Settings are premium
                   placeholders (via shared/PlaceholderPage); the rest are
                   generic ComingSoon placeholders (see below)
   lib/
@@ -136,13 +137,40 @@ added a full navigation drawer:
   `/settings` — all premium placeholders (see below), not generic
   ComingSoon dead-ends.
 - **`shared/PlaceholderPage`** — the reusable template behind Profile,
-  Notifications, Settings and My Claims. Each supplies its own icon, title
-  and description, then gets the same "Under Development" badge and a
-  "Back to Discover" CTA — a considered placeholder, not a dead end.
+  Notifications and Settings. Each supplies its own icon, title and
+  description, then gets the same "Under Development" badge and a
+  "Back to Discover" CTA — a considered placeholder, not a dead end. (My
+  Claims used this template too until it was replaced by the real page —
+  see below.)
 - **"How It Works" fix**: this anchor only exists on Home, so linking to it
   from any other page previously did nothing. It now links to
   `/#how-it-works`, and `pages/Home.jsx` has a small effect that
   scroll-to's the section on mount when that hash is present.
+
+## My Claims (`/my-claims`)
+
+The application tracker — deliberately built as `My Schemes`'s sister page:
+same `Section`/`Container` rhythm, header treatment, skeleton shape,
+`EmptyState` reuse, and bottom "keep exploring" `Card`. The one structural
+difference is a status-summary bar instead of search/category chips — a
+short claims list benefits more from an at-a-glance count than a search box.
+
+- **`shared/ClaimCard`** — status badge, a reused `ProgressSteps` bar
+  (the same component built for Eligibility's wizard, now repurposed to
+  show the claim pipeline: Submitted → Documents Verified → Department
+  Review → Approved → Benefit Released), a plain-English "next action"
+  note, an AI Match / processing-time stat row, and a conditional
+  "Continue" button (Draft/Documents Required only). Draft and Rejected
+  skip the progress bar since they've never entered, or exited, that
+  pipeline — showing a partially-filled bar for either would misrepresent
+  the claim.
+- **Every one of the 7 statuses** (Draft, Submitted, Documents Required,
+  Under Review, Approved, Rejected, Completed) is differentiated using only
+  `Badge` variant + icon shape — no red/green/yellow anywhere.
+- **Loading, empty, and error states** are all built: `fetchClaims()` in
+  `pages/MyClaims.jsx` is already shaped like a real `GET /api/claims`
+  call, including the error branch — swap the mock body for a real request
+  and the error/retry UI works without any other change.
 
 ## Design system
 
