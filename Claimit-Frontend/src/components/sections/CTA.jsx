@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
@@ -24,7 +25,13 @@ function CTA() {
               It takes under two minutes to check your eligibility — no
               paperwork, no fees, no login required to get started.
             </p>
-            <Button size="lg" variant="secondary" className="border-none bg-white text-brand-800 hover:bg-brand-50">
+            <Button
+              as={Link}
+              to="/eligibility"
+              size="lg"
+              variant="secondary"
+              className="border-none bg-white text-brand-800 hover:bg-brand-50"
+            >
               Check Eligibility
               <ArrowRight className="h-4 w-4" />
             </Button>

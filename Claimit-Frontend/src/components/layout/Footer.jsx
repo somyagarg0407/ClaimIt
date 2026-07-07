@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Container } from "@/components/ui/Container";
 import { Twitter, Linkedin, Instagram } from "lucide-react";
 
@@ -5,8 +6,9 @@ const FOOTER_LINKS = {
   Product: [
     { label: "Discover Schemes", href: "/discover" },
     { label: "Check Eligibility", href: "/eligibility" },
-    { label: "My Claims", href: "/claims" },
-    { label: "How It Works", href: "#how-it-works" },
+    { label: "My Schemes", href: "/my-schemes" },
+    { label: "My Claims", href: "/my-claims" },
+    { label: "How It Works", href: "/#how-it-works" },
   ],
   Company: [
     { label: "About", href: "/about" },
@@ -56,12 +58,12 @@ function Footer() {
               <ul className="flex flex-col gap-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-sm text-gray-500 transition-colors hover:text-brand-700"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

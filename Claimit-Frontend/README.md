@@ -33,18 +33,21 @@ npm run preview    # serve the production build locally
 src/
   components/
     ui/           Design-system primitives: Button, Card, Badge, Container,
-                  Section, Select, Accordion, Input, PasswordInput, ProgressSteps
-    layout/       Navbar, Footer — persistent across every page
+                  Section, Select, Accordion, Input, PasswordInput,
+                  ProgressSteps, SectionHeading, DrawerItem
+    layout/       Navbar, Footer, NavigationDrawer — persistent across every page
     shared/       Domain components reused across pages: SchemeCard, FeatureCard,
                   ScoreRing (the eligibility-score gauge), EligibilityDashboard,
                   SearchBar, CategoryChip, FilterPanel, RecommendationBanner,
-                  SchemeResultCard, EmptyState, Pagination, AuthCard,
-                  AuthDivider, SocialLoginButton
+                  SchemeResultCard, SavedSchemeCard, EmptyState, Pagination,
+                  AuthCard, AuthDivider, SocialLoginButton, PlaceholderPage
     sections/     Landing-page-specific blocks: Hero, HowItWorks, Features,
                   PopularSchemes, CTA
   pages/          One component per route — Home, Discover, Scheme Details,
-                  Login and Eligibility are fully built; the rest are
-                  ComingSoon placeholders (see below)
+                  Login, Eligibility and My Schemes are fully built; Profile,
+                  Notifications, Settings and My Claims are premium
+                  placeholders (via shared/PlaceholderPage); the rest are
+                  generic ComingSoon placeholders (see below)
   lib/
     utils.js      cn() class-merging helper used by every component
     schemes.js    Single source of truth for scheme data (SCHEMES, CATEGORIES,
@@ -85,11 +88,61 @@ src/
   `computeEligibility()` is a clearly-commented mock heuristic — swap it for
   a real `POST /api/eligibility/check` call once the backend exists; nothing
   else on the page needs to change.
+- **My Schemes** (`/claims`) — the user's saved-schemes collection: search,
+  category chips (derived from whatever categories are actually saved, not
+  the full Discover taxonomy), a skeleton loading state, optimistic
+  remove-from-saved (via the new `SavedSchemeCard`, with a fade-out handled
+  by Framer Motion's `AnimatePresence`), and two distinct empty states —
+  "never saved anything" vs. "search/filter matched nothing." Backed by a
+  clearly-commented `MOCK_SAVED` array in `pages/MySchemes.jsx`; swap it for
+  a real `GET /api/saved-schemes` call (and wire `handleRemove`'s optimistic
+  update to a real `DELETE` with rollback-on-failure) once the backend
+  exists. Deliberately reuses `lib/schemes.js` as-is rather than adding a
+  Central/State field there — that mapping lives locally in the page since
+  Discover and Scheme Details don't need it (yet).
 
 `SchemeResultCard`'s "View Details" button and the related-schemes grid both
 link to `/schemes/:slug` using the existing `Button`/`Card` `as={Link}`
 pattern — no extra routing glue needed when a new scheme is added to the data
 file. The Navbar's Login button now uses the same pattern to link to `/login`.
+
+## Navigation & application integration
+
+A dedicated sprint made every CTA across the app actually navigate, and
+added a full navigation drawer:
+
+- **Fixed dead buttons**: Hero's "Check Eligibility"/"Explore Schemes", the
+  bottom CTA banner, "View all schemes" on the landing page, and the
+  Navbar's "Register"/"Check Eligibility" buttons all now link somewhere
+  real. Search and Bell in the Navbar link to `/discover` and
+  `/notifications` respectively.
+- **`NavigationDrawer`** (`layout/`) — triggered by a hamburger beside the
+  logo, visible at every breakpoint. It's a strict superset of the old
+  mobile-only nav toggle (same links, plus a "My Activity" and "Account"
+  section), so it now serves as the single mobile navigation surface —
+  running two different hamburgers side by side on small screens would
+  have added exactly the clutter this sprint was meant to remove. Handles
+  Escape-to-close, backdrop click-to-close, body scroll lock, and closes
+  itself on route change. `Logout` is intentionally rendered disabled with
+  a "Soon" badge — there's no auth session to log out of yet.
+- **Active-state highlighting** in both the top Navbar and the drawer via
+  `useLocation()` — same `isActive()` shape in both, so they can't drift
+  out of sync.
+- **Route reorganization**: the saved-schemes page moved from `/claims` to
+  `/my-schemes` (matching the drawer's "My Activity" section, which
+  distinguishes saved schemes from actual submitted applications). The old
+  `/claims` now redirects via `<Navigate replace />` so no existing link or
+  bookmark 404s. Added `/my-claims`, `/profile`, `/notifications`,
+  `/settings` — all premium placeholders (see below), not generic
+  ComingSoon dead-ends.
+- **`shared/PlaceholderPage`** — the reusable template behind Profile,
+  Notifications, Settings and My Claims. Each supplies its own icon, title
+  and description, then gets the same "Under Development" badge and a
+  "Back to Discover" CTA — a considered placeholder, not a dead end.
+- **"How It Works" fix**: this anchor only exists on Home, so linking to it
+  from any other page previously did nothing. It now links to
+  `/#how-it-works`, and `pages/Home.jsx` has a small effect that
+  scroll-to's the section on mount when that hash is present.
 
 ## Design system
 
@@ -97,15 +150,15 @@ All brand colors, type scale, shadows and radii live in `tailwind.config.js`
 under `theme.extend` — nothing is hard-coded as an arbitrary hex value in
 components. Stick to this palette when adding new UI:
 
-| Token         | Hex       | Use                                  |
-|---------------|-----------|---------------------------------------|
-| `brand-800`   | `#03045E` | Primary buttons, logo mark, headlines accent |
-| `brand-700`   | `#023E8A` | Hover states on primary                |
-| `brand-600`   | `#0077B6` | Links, highlighted text, icons         |
-| `brand-500`   | `#0096C7` | Secondary accents                      |
-| `brand-400`   | `#00B4D8` | Gradient endpoints, active states      |
-| `brand-300`/`200`/`100`/`50` | `#48CAE4`…`#CAF0F8` | Soft backgrounds, badges, borders |
-| `ink`         | `#000000` | Headings only (never gray)             |
+| Token                        | Hex                 | Use                                          |
+| ---------------------------- | ------------------- | -------------------------------------------- |
+| `brand-800`                  | `#0077B6`           | Primary buttons, logo mark, headlines accent |
+| `brand-700`                  | `#023E8A`           | Hover states on primary                      |
+| `brand-600`                  | `#0077B6`           | Links, highlighted text, icons               |
+| `brand-500`                  | `#0096C7`           | Secondary accents                            |
+| `brand-400`                  | `#00B4D8`           | Gradient endpoints, active states            |
+| `brand-300`/`200`/`100`/`50` | `#48CAE4`…`#CAF0F8` | Soft backgrounds, badges, borders            |
+| `ink`                        | `#000000`           | Headings only (never gray)                   |
 
 Body copy uses Tailwind's neutral `gray-500`/`gray-600`. Never introduce a
 color outside this table — the one deliberate exception is the real

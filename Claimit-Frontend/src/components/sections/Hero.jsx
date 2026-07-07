@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, Compass, Sparkles, BadgeCheck, Layers } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -66,11 +67,11 @@ function Hero() {
             custom={0.3}
             className="flex flex-col gap-3 sm:flex-row"
           >
-            <Button size="lg">
+            <Button as={Link} to="/eligibility" size="lg">
               Check Eligibility
               <ArrowRight className="h-4 w-4" />
             </Button>
-            <Button size="lg" variant="secondary">
+            <Button as={Link} to="/discover" size="lg" variant="secondary">
               Explore Schemes
             </Button>
           </motion.div>

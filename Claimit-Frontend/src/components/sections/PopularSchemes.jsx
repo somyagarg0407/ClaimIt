@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Wheat, ShieldPlus, GraduationCap, HeartHandshake, HandCoins, Home } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
@@ -40,7 +41,7 @@ function PopularSchemes() {
               rates from citizen profiles like yours.
             </p>
           </div>
-          <Button variant="secondary" className="shrink-0">
+          <Button as={Link} to="/discover" variant="secondary" className="shrink-0">
             View all schemes
             <ArrowRight className="h-4 w-4" />
           </Button>
