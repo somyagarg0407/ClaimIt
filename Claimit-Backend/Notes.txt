@@ -5,10 +5,28 @@ devDependency → Sirf development ke liye hoti hai (Nodemon, ESLint, Prettier).
 : Controller request/response handle karta hai, jabki Service business logic implement karti hai.
 "Controller should only handle HTTP request and response. Business logic belongs in the service layer, which makes the code reusable, easier to test, and easier to maintain as the project grows."
 ---------------
-
-
-
-
+.env.example documents the required variables without exposing sensitive values, while .env contains real secrets and must remain private.
+----------
+You run the project
+        │
+        ▼
+server.js starts executing
+        │
+        ▼
+Load environment variables
+        │
+        ▼
+Connect to database
+        │
+        ▼
+Import app.js
+        │
+        ▼
+Express app is created
+        │
+        ▼
+Server starts listening on PORT
+-----------
 
 
 

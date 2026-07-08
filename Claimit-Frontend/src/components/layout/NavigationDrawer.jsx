@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { DrawerItem } from "@/components/ui/DrawerItem";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Button } from "@/components/ui/Button";
 
 const PRIMARY_ITEMS = [
   { icon: Home, label: "Home", to: "/" },
@@ -136,6 +137,24 @@ function NavigationDrawer({ open, onClose }) {
                 onClick={onClose}
               />
               <DrawerItem icon={LogOut} label="Logout" disabled badge="Soon" />
+            </div>
+
+            {/*
+              Fix for: mobile users only ever see this drawer (the desktop
+              Navbar's Login/Register buttons live in a `hidden lg:flex`
+              cluster), so without this section they had no way to sign in
+              on mobile at all. TODO(auth): once real JWT session state
+              exists, hide this whole block when logged in, and swap it for
+              the user's name/avatar + a functional Logout above instead of
+              the disabled one.
+            */}
+            <div className="mt-4 flex flex-col gap-2 border-t border-gray-100 pt-4">
+              <Button as={Link} to="/login" variant="outline" size="sm" onClick={onClose} className="w-full">
+                Login
+              </Button>
+              <Button as={Link} to="/register" size="sm" onClick={onClose} className="w-full">
+                Register
+              </Button>
             </div>
           </motion.div>
         </>

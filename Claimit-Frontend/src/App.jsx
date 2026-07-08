@@ -11,6 +11,7 @@ import MyClaims from "@/pages/MyClaims";
 import Profile from "@/pages/Profile";
 import Notifications from "@/pages/Notifications";
 import Settings from "@/pages/Settings";
+import Help from "@/pages/Help";
 import ComingSoon from "@/pages/ComingSoon";
 
 /**
@@ -41,7 +42,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/help" element={<ComingSoon title="Help" />} />
+          <Route path="/help" element={<Help />} />
           <Route path="/about" element={<ComingSoon title="About" />} />
           <Route path="/contact" element={<ComingSoon title="Contact" />} />
           <Route path="/privacy" element={<ComingSoon title="Privacy Policy" />} />

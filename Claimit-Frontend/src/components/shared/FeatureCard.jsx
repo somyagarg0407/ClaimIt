@@ -5,9 +5,9 @@ import { Card } from "@/components/ui/Card";
  * reusable anywhere the product needs to explain a capability with an
  * icon + short copy.
  */
-function FeatureCard({ icon: Icon, title, description }) {
+function FeatureCard({ icon: Icon, title, description, ...rest }) {
   return (
-    <Card hover className="flex flex-col gap-4 p-7">
+    <Card hover {...rest} className="flex flex-col gap-4 p-7">
       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-800 text-white">
         <Icon className="h-5 w-5" strokeWidth={2} />
       </div>

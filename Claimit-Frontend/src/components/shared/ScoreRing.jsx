@@ -13,16 +13,8 @@ function ScoreRing({ value = 92, size = 88, strokeWidth = 8, label }) {
   const gradientId = `score-ring-gradient-${size}-${value}`;
 
   return (
-    <div
-      className="relative inline-flex items-center justify-center"
-      style={{ width: size, height: size }}
-    >
-      <svg
-        width={size}
-        height={size}
-        viewBox={`0 0 ${size} ${size}`}
-        className="-rotate-90"
-      >
+    <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="-rotate-90">
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#0077B6" />
@@ -53,12 +45,8 @@ function ScoreRing({ value = 92, size = 88, strokeWidth = 8, label }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="tabular-mono text-lg font-semibold text-brand-800">
-          {value}%
-        </span>
-        {label && (
-          <span className="text-[10px] font-medium text-gray-400">{label}</span>
-        )}
+        <span className="tabular-mono text-lg font-semibold text-brand-800">{value}%</span>
+        {label && <span className="text-[10px] font-medium text-gray-400">{label}</span>}
       </div>
     </div>
   );

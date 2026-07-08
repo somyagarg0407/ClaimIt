@@ -34,20 +34,19 @@ src/
   components/
     ui/           Design-system primitives: Button, Card, Badge, Container,
                   Section, Select, Accordion, Input, PasswordInput,
-                  ProgressSteps, SectionHeading, DrawerItem
+                  ProgressSteps, SectionHeading, DrawerItem, Switch
     layout/       Navbar, Footer, NavigationDrawer — persistent across every page
     shared/       Domain components reused across pages: SchemeCard, FeatureCard,
                   ScoreRing (the eligibility-score gauge), EligibilityDashboard,
                   SearchBar, CategoryChip, FilterPanel, RecommendationBanner,
                   SchemeResultCard, SavedSchemeCard, ClaimCard, EmptyState,
                   Pagination, AuthCard, AuthDivider, SocialLoginButton,
-                  PlaceholderPage
+                  PlaceholderPage, AccountTabs, FormSection, NotificationItem
     sections/     Landing-page-specific blocks: Hero, HowItWorks, Features,
                   PopularSchemes, CTA
   pages/          One component per route — Home, Discover, Scheme Details,
-                  Login, Eligibility, My Schemes and My Claims are fully
-                  built; Profile, Notifications and Settings are premium
-                  placeholders (via shared/PlaceholderPage); the rest are
+                  Login, Eligibility, My Schemes, My Claims, Help, Profile,
+                  Notifications and Settings are fully built; the rest are
                   generic ComingSoon placeholders (see below)
   lib/
     utils.js      cn() class-merging helper used by every component
@@ -172,21 +171,63 @@ short claims list benefits more from an at-a-glance count than a search box.
   call, including the error branch — swap the mock body for a real request
   and the error/retry UI works without any other change.
 
+## Account & Support module (Help, Profile, Notifications, Settings)
+
+Built together as one module — all four share `shared/AccountTabs` (a pill
+row reusing `CategoryChip` as-is, navigated via `useNavigate` rather than
+turning that component into a `Link`) directly under their header, so
+moving between them feels like one section of the app rather than four
+separate pages.
+
+- **Help** (`/help`) — `SearchBar` filters a real `Accordion` FAQ list
+  client-side; "Getting Started" reuses `FeatureCard` (now with a prop
+  spread so it can act as `as={Link}`, same minimal pattern already used
+  by `SchemeCard`) linking straight into Discover/Eligibility/My
+  Schemes/My Claims.
+- **Profile** (`/profile`) — reuses `FilterPanel`'s exported `FILTER_FIELDS`
+  for State/Occupation/Income so these options can't drift from Discover's.
+  "Category" here is the standard Indian-government social/reservation
+  category (General/OBC/SC/ST/EWS) — deliberately a local option list,
+  distinct from `lib/schemes.js`'s scheme categories, which power
+  "Interested Scheme Categories" instead (toggled via `CategoryChip`, no
+  new multi-select component needed). Save/Cancel simulate a
+  `PATCH /api/profile` call.
+- **Notifications** (`/notifications`) — new `shared/NotificationItem`
+  per row; 6 notification types differentiated by icon only (no color
+  coding). All/Unread filter and "Mark all as read" are fully wired against
+  local state; `pages/Notifications.jsx`'s mock feed is shaped like a real
+  `GET /api/notifications` response.
+- **Settings** (`/settings`) — new `ui/Switch` (didn't exist before;
+  a real accessible toggle built on a native checkbox) for notification
+  preferences, grouped with Profile's forms under the new
+  `shared/FormSection` wrapper so both pages' "sections of settings" read
+  as the same pattern. Change Password, Logout and Delete Account render
+  disabled with a muted note — mirroring the drawer's existing
+  disabled-Logout treatment rather than inventing a different style.
+
+**Fixed bug**: the navigation drawer had no Login/Register presence at
+all — desktop keeps those in the Navbar's `hidden lg:flex` cluster, but
+since the drawer is the *only* mobile nav surface, logged-out mobile users
+previously had no way to reach either. `NavigationDrawer.jsx` now has a
+Login/Register button pair at the bottom, with a `TODO(auth)` comment
+marking where to hide this section (and make the existing disabled Logout
+functional) once real JWT session state exists.
+
 ## Design system
 
 All brand colors, type scale, shadows and radii live in `tailwind.config.js`
 under `theme.extend` — nothing is hard-coded as an arbitrary hex value in
 components. Stick to this palette when adding new UI:
 
-| Token                        | Hex                 | Use                                          |
-| ---------------------------- | ------------------- | -------------------------------------------- |
-| `brand-800`                  | `#0077B6`           | Primary buttons, logo mark, headlines accent |
-| `brand-700`                  | `#023E8A`           | Hover states on primary                      |
-| `brand-600`                  | `#0077B6`           | Links, highlighted text, icons               |
-| `brand-500`                  | `#0096C7`           | Secondary accents                            |
-| `brand-400`                  | `#00B4D8`           | Gradient endpoints, active states            |
-| `brand-300`/`200`/`100`/`50` | `#48CAE4`…`#CAF0F8` | Soft backgrounds, badges, borders            |
-| `ink`                        | `#000000`           | Headings only (never gray)                   |
+| Token         | Hex       | Use                                  |
+|---------------|-----------|---------------------------------------|
+| `brand-800`   | `#03045E` | Primary buttons, logo mark, headlines accent |
+| `brand-700`   | `#023E8A` | Hover states on primary                |
+| `brand-600`   | `#0077B6` | Links, highlighted text, icons         |
+| `brand-500`   | `#0096C7` | Secondary accents                      |
+| `brand-400`   | `#00B4D8` | Gradient endpoints, active states      |
+| `brand-300`/`200`/`100`/`50` | `#48CAE4`…`#CAF0F8` | Soft backgrounds, badges, borders |
+| `ink`         | `#000000` | Headings only (never gray)             |
 
 Body copy uses Tailwind's neutral `gray-500`/`gray-600`. Never introduce a
 color outside this table — the one deliberate exception is the real
