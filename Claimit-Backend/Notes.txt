@@ -2,9 +2,9 @@ nodemon development ke time file change hote hi server automatically restart kar
 dependency → Production me bhi required hoti hai (Express, Mongoose, JWT).
 devDependency → Sirf development ke liye hoti hai (Nodemon, ESLint, Prettier).
 -----------
-
-
-
+: Controller request/response handle karta hai, jabki Service business logic implement karti hai.
+"Controller should only handle HTTP request and response. Business logic belongs in the service layer, which makes the code reusable, easier to test, and easier to maintain as the project grows."
+---------------
 
 
 
