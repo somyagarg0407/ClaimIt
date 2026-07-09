@@ -30,12 +30,20 @@ Server starts listening on PORT
 Q. Why is separating app.js and server.js useful for testing?
 Tests can import the Express app directly without starting a real server. This allows tools like Supertest to send requests to the app in memory, making tests faster and avoiding port conflicts.
 -----------------
-
-
-
-
-
-
+Because of Single Responsibility Principle (SRP).
+----------------
+those make it async because connecting to a database takes time. It involves communicating with a remote server over the internet.
+----------
+Start Application
+↓
+Connect Database
+↓
+Database Connected ✅
+↓
+Start Server
+↓
+Accept Requests
+---------------------
 
 
 
