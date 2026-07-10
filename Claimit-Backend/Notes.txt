@@ -44,7 +44,7 @@ Start Server
 ↓
 Accept Requests
 ---------------------
-
+res.json() automatically sends a 200 OK status if no status is specified. However, explicitly using res.status(200) makes the response clearer and keeps the code consistent with other responses like 201, 400, 401, or 500.
 
 
 
