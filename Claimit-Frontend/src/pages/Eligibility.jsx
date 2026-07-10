@@ -21,6 +21,7 @@ import { SchemeCard } from "@/components/shared/SchemeCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { FILTER_FIELDS } from "@/components/shared/FilterPanel";
 import { SCHEMES } from "@/lib/schemes";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 const FIELD_BY_KEY = Object.fromEntries(FILTER_FIELDS.map((f) => [f.key, f]));
 
@@ -165,6 +166,7 @@ const TIER_COPY = {
 };
 
 function Eligibility() {
+  usePageTitle("Eligibility");
   const [step, setStep] = useState(0);
   const [form, setForm] = useState(DEFAULT_FORM);
   const [errors, setErrors] = useState({});

@@ -9,10 +9,12 @@ import { PasswordInput } from "@/components/ui/PasswordInput";
 import { AuthCard } from "@/components/shared/AuthCard";
 import { AuthDivider } from "@/components/shared/AuthDivider";
 import { SocialLoginButton } from "@/components/shared/SocialLoginButton";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function Login() {
+  usePageTitle("Login");
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

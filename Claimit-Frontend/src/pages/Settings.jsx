@@ -15,10 +15,12 @@ import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
 import { AccountTabs } from "@/components/shared/AccountTabs";
 import { FormSection } from "@/components/shared/FormSection";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 const LANGUAGE_OPTIONS = ["English", "Hindi", "Tamil", "Telugu", "Bengali", "Marathi"];
 
 function Settings() {
+  usePageTitle("Settings");
   const [language, setLanguage] = useState("English");
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [pushNotifications, setPushNotifications] = useState(false);

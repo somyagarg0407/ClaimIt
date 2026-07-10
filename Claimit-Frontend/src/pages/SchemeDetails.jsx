@@ -20,12 +20,14 @@ import { ScoreRing } from "@/components/shared/ScoreRing";
 import { SchemeCard } from "@/components/shared/SchemeCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { getSchemeBySlug, getRelatedSchemes } from "@/lib/schemes";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 function SchemeDetails() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const scheme = getSchemeBySlug(slug);
   const [bookmarked, setBookmarked] = useState(false);
+  usePageTitle(scheme ? scheme.title : "Scheme Not Found");
 
   if (!scheme) {
     return (

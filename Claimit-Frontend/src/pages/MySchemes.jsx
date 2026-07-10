@@ -13,6 +13,7 @@ import { SavedSchemeCard } from "@/components/shared/SavedSchemeCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Pagination } from "@/components/shared/Pagination";
 import { getSchemeBySlug, CATEGORIES } from "@/lib/schemes";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 const PAGE_SIZE = 6;
 
@@ -77,6 +78,7 @@ function relativeSavedLabel(isoDate) {
 }
 
 function MySchemes() {
+  usePageTitle("My Schemes");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [savedSlugs, setSavedSlugs] = useState(() => MOCK_SAVED.map((r) => r.slug));

@@ -10,6 +10,7 @@ import { ClaimCard } from "@/components/shared/ClaimCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Pagination } from "@/components/shared/Pagination";
 import { getSchemeBySlug } from "@/lib/schemes";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 const PAGE_SIZE = 6;
 
@@ -100,6 +101,7 @@ function SummaryStat({ label, value, highlight = false }) {
 }
 
 function MyClaims() {
+  usePageTitle("My Claims");
   const navigate = useNavigate();
   const [status, setStatus] = useState("loading"); // "loading" | "error" | "ready"
   const [claims, setClaims] = useState([]);

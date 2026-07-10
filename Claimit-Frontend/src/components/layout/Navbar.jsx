@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Bell, Menu, Search } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -18,6 +18,13 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
+
+  // Stable reference — an inline arrow here would be recreated on every
+  // Navbar render (e.g. the scroll listener below toggling `scrolled`),
+  // which fed a new `onClose` into NavigationDrawer's effect dependency
+  // array on every such render and tore down/rebuilt its scroll-lock
+  // mid-flight, corrupting the captured scroll position.
+  const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -112,7 +119,7 @@ function Navbar() {
         </div>
       </Container>
 
-      <NavigationDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <NavigationDrawer open={drawerOpen} onClose={closeDrawer} />
     </header>
   );
 }

@@ -40,6 +40,13 @@ const ACCOUNT_ITEMS = [
  * A strict superset of the old mobile-only nav toggle (same links, plus
  * My Activity / Account) — so it now serves as the single mobile nav
  * surface too, rather than running two different hamburgers side by side.
+ *
+ * Overlay audit: this is currently the only overlay-style UI in the app —
+ * Select uses a native <select> (browser-managed, no custom z-index or
+ * focus-trap interaction), and the only other AnimatePresence usage
+ * (MySchemes' card removal) is a list-exit animation, not an overlay. If a
+ * future popover/dropdown is added, close it here on `open` to keep only
+ * one overlay active at a time.
  */
 function NavigationDrawer({ open, onClose }) {
   const location = useLocation();
@@ -50,14 +57,37 @@ function NavigationDrawer({ open, onClose }) {
     function handleKeyDown(e) {
       if (e.key === "Escape") onClose();
     }
-
     document.addEventListener("keydown", handleKeyDown);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+
+    // Plain `overflow: hidden` on body does not reliably block scrolling on
+    // iOS Safari (the page can still scroll behind the drawer, and rubber-
+    // banding can leave `document.body` unresponsive-feeling afterwards).
+    // Locking via `position: fixed` at the current scroll offset is the
+    // standard cross-browser-safe technique, but it requires manually
+    // restoring both the styles and the scroll position on close — a
+    // plain `overflow: hidden` toggle would otherwise silently reset
+    // scroll to the top when removed.
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const previous = {
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    };
+
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+    body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = previousOverflow;
+      body.style.position = previous.position;
+      body.style.top = previous.top;
+      body.style.width = previous.width;
+      body.style.overflow = previous.overflow;
+      window.scrollTo({ top: scrollY, left: 0, behavior: "instant" });
     };
   }, [open, onClose]);
 

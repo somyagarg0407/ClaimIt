@@ -3,6 +3,7 @@ import { Construction, ArrowLeft } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 /**
  * Temporary placeholder for pages that are on the roadmap (Discover,
@@ -11,6 +12,8 @@ import { Badge } from "@/components/ui/Badge";
  * needed since Navbar/Footer already link here by path.
  */
 function ComingSoon({ title = "This page" }) {
+  usePageTitle(title);
+
   return (
     <Container className="flex min-h-[60vh] flex-col items-center justify-center gap-5 py-24 text-center">
       <Badge variant="outline">

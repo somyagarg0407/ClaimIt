@@ -5,9 +5,11 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Features } from "@/components/sections/Features";
 import { PopularSchemes } from "@/components/sections/PopularSchemes";
 import { CTA } from "@/components/sections/CTA";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 function Home() {
   const location = useLocation();
+  usePageTitle("Home");
 
   // Handles /#how-it-works links clicked from other pages — a plain anchor
   // only works if you're already on Home, since the element doesn't exist

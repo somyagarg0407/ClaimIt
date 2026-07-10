@@ -35,20 +35,24 @@ src/
     ui/           Design-system primitives: Button, Card, Badge, Container,
                   Section, Select, Accordion, Input, PasswordInput,
                   ProgressSteps, SectionHeading, DrawerItem, Switch
-    layout/       Navbar, Footer, NavigationDrawer — persistent across every page
+    layout/       Navbar, Footer, NavigationDrawer, ScrollToTop — persistent
+                  across every page
     shared/       Domain components reused across pages: SchemeCard, FeatureCard,
                   ScoreRing (the eligibility-score gauge), EligibilityDashboard,
                   SearchBar, CategoryChip, FilterPanel, RecommendationBanner,
                   SchemeResultCard, SavedSchemeCard, ClaimCard, EmptyState,
                   Pagination, AuthCard, AuthDivider, SocialLoginButton,
-                  PlaceholderPage, AccountTabs, FormSection, NotificationItem
+                  AccountTabs, FormSection, NotificationItem
     sections/     Landing-page-specific blocks: Hero, HowItWorks, Features,
                   PopularSchemes, CTA
   pages/          One component per route — Home, Discover, Scheme Details,
-                  Login, Eligibility, My Schemes, My Claims, Help, Profile,
-                  Notifications and Settings are fully built; the rest are
-                  generic ComingSoon placeholders (see below)
+                  Login, Register, Eligibility, My Schemes, My Claims, Help,
+                  Profile, Notifications, Settings and NotFound are fully
+                  built; the rest are generic ComingSoon placeholders (see
+                  below)
   lib/
+    usePageTitle.js  Sets document.title as "ClaimIt | {page}" per route,
+                  restoring the previous title on unmount
     utils.js      cn() class-merging helper used by every component
     schemes.js    Single source of truth for scheme data (SCHEMES, CATEGORIES,
                   getSchemeBySlug, getRelatedSchemes) — both Discover and
@@ -207,7 +211,7 @@ separate pages.
 
 **Fixed bug**: the navigation drawer had no Login/Register presence at
 all — desktop keeps those in the Navbar's `hidden lg:flex` cluster, but
-since the drawer is the *only* mobile nav surface, logged-out mobile users
+since the drawer is the _only_ mobile nav surface, logged-out mobile users
 previously had no way to reach either. `NavigationDrawer.jsx` now has a
 Login/Register button pair at the bottom, with a `TODO(auth)` comment
 marking where to hide this section (and make the existing disabled Logout
@@ -219,15 +223,15 @@ All brand colors, type scale, shadows and radii live in `tailwind.config.js`
 under `theme.extend` — nothing is hard-coded as an arbitrary hex value in
 components. Stick to this palette when adding new UI:
 
-| Token         | Hex       | Use                                  |
-|---------------|-----------|---------------------------------------|
-| `brand-800`   | `#03045E` | Primary buttons, logo mark, headlines accent |
-| `brand-700`   | `#023E8A` | Hover states on primary                |
-| `brand-600`   | `#0077B6` | Links, highlighted text, icons         |
-| `brand-500`   | `#0096C7` | Secondary accents                      |
-| `brand-400`   | `#00B4D8` | Gradient endpoints, active states      |
-| `brand-300`/`200`/`100`/`50` | `#48CAE4`…`#CAF0F8` | Soft backgrounds, badges, borders |
-| `ink`         | `#000000` | Headings only (never gray)             |
+| Token                        | Hex                 | Use                                          |
+| ---------------------------- | ------------------- | -------------------------------------------- |
+| `brand-800`                  | `#0077B6`           | Primary buttons, logo mark, headlines accent |
+| `brand-700`                  | `#023E8A`           | Hover states on primary                      |
+| `brand-600`                  | `#0077B6`           | Links, highlighted text, icons               |
+| `brand-500`                  | `#0096C7`           | Secondary accents                            |
+| `brand-400`                  | `#00B4D8`           | Gradient endpoints, active states            |
+| `brand-300`/`200`/`100`/`50` | `#48CAE4`…`#CAF0F8` | Soft backgrounds, badges, borders            |
+| `ink`                        | `#000000`           | Headings only (never gray)                   |
 
 Body copy uses Tailwind's neutral `gray-500`/`gray-600`. Never introduce a
 color outside this table — the one deliberate exception is the real
@@ -271,3 +275,52 @@ in place.
 - Animations are intentionally restrained (fade-ups, hover lifts, one
   scroll-triggered ring animation) — avoid adding floating/particle/3D
   effects, per the design brief.
+
+## v1.0 production-readiness sprint
+
+A pre-backend audit pass. No visual redesign — everything here is either a
+genuine bug fix, missing production infrastructure, or dead-code removal.
+
+- **Register** (`/register`) — didn't actually exist yet (was still
+  `ComingSoon`, despite being listed as complete). Built now, mirroring
+  Login's exact components: `AuthCard`, `AuthDivider`, `SocialLoginButton`,
+  `Input`, `PasswordInput` — plus a confirm-password field and a terms
+  checkbox, both with inline validation.
+- **`NotFound`** (`pages/NotFound.jsx`) — a real 404 (title, description,
+  "Go Home" / "Explore Schemes") now sits on the `*` route instead of the
+  generic `ComingSoon`.
+- **Global scroll restoration** — `layout/ScrollToTop.jsx` scrolls to the
+  top on every route change, and explicitly skips this when a hash is
+  present so it doesn't fight with Home's `/#how-it-works` scroll effect.
+- **Per-page document titles** — `lib/usePageTitle.js`, called once near
+  the top of every real page ("ClaimIt | {Page}"). `SchemeDetails` uses the
+  actual scheme name instead of a generic label. `ComingSoon` now sets its
+  own title from its existing `title` prop, covering every remaining stub
+  route (About, Contact, Privacy, Terms, Cookies, Forgot Password) in one
+  change.
+- **Favicon** — `public/favicon.svg`, the same brand mark used in the
+  Navbar/Drawer logo, wired into `index.html`.
+- **Removed `shared/PlaceholderPage`** — orphaned after Profile,
+  Notifications, Settings and Help all became real pages in an earlier
+  sprint; a full unused-component sweep found nothing else dead.
+- **Navigation Drawer scroll-lock — found and fixed a real bug, not just
+  polish.** The previous `overflow: hidden`-only lock doesn't reliably
+  block scrolling on iOS Safari and silently reset scroll position on
+  close. The fix (`position: fixed` at the captured scroll offset,
+  restored on cleanup) surfaced a second, subtler bug during testing:
+  `Navbar` was passing `onClose={() => setDrawerOpen(false)}` as a fresh
+  inline function on every render, which sat in the drawer's effect
+  dependency array. When the scroll-lock's own `overflow: hidden` briefly
+  changed the viewport width (scrollbar disappearing), Navbar's scroll
+  listener re-fired, `scrolled` state flipped, Navbar re-rendered with a
+  new `onClose` reference, and the drawer's effect tore down and rebuilt
+  mid-flight — corrupting the captured scroll position. Fixed by
+  memoizing `onClose` with `useCallback` in `Navbar.jsx` so it has a
+  stable identity. Verified with fresh-page Playwright runs across top,
+  middle, and bottom scroll positions, five consecutive open/close
+  cycles, and multiple different routes — all restore to the exact
+  original scroll position with no residual body styles.
+- **Full z-index / overlay audit**: the drawer (60/70) is the only
+  overlay-style UI in the app and already stacks above the only other
+  fixed element (`Navbar`, z-50); `Select` uses a native `<select>`, so
+  there's no other dropdown/popover to conflict with it.

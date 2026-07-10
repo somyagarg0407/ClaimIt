@@ -11,6 +11,7 @@ import { FormSection } from "@/components/shared/FormSection";
 import { CategoryChip } from "@/components/shared/CategoryChip";
 import { FILTER_FIELDS } from "@/components/shared/FilterPanel";
 import { CATEGORIES } from "@/lib/schemes";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 const FIELD_BY_KEY = Object.fromEntries(FILTER_FIELDS.map((f) => [f.key, f]));
 
@@ -57,6 +58,7 @@ const INITIAL_PROFILE = {
 };
 
 function Profile() {
+  usePageTitle("Profile");
   const [form, setForm] = useState(INITIAL_PROFILE);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState(null);

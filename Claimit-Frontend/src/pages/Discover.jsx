@@ -11,10 +11,12 @@ import { SchemeResultCard } from "@/components/shared/SchemeResultCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Pagination } from "@/components/shared/Pagination";
 import { CATEGORIES, SCHEMES } from "@/lib/schemes";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 const PAGE_SIZE = 6;
 
 function Discover() {
+  usePageTitle("Discover");
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All Schemes");
   const [filters, setFilters] = useState(DEFAULT_FILTERS);

@@ -20,6 +20,7 @@ import { SearchBar } from "@/components/shared/SearchBar";
 import { FeatureCard } from "@/components/shared/FeatureCard";
 import { AccountTabs } from "@/components/shared/AccountTabs";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 const GETTING_STARTED = [
   {
@@ -82,6 +83,7 @@ const FAQS = [
 ];
 
 function Help() {
+  usePageTitle("Help");
   const [search, setSearch] = useState("");
 
   const filteredFaqs = useMemo(() => {

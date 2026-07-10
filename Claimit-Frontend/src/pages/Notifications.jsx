@@ -9,6 +9,7 @@ import { AccountTabs } from "@/components/shared/AccountTabs";
 import { CategoryChip } from "@/components/shared/CategoryChip";
 import { NotificationItem } from "@/components/shared/NotificationItem";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { usePageTitle } from "@/lib/usePageTitle";
 
 // Mock notification feed — replace with a real GET /api/notifications call
 // (auth'd via JWT) once the backend exists; markAllRead()/markRead() below
@@ -80,6 +81,7 @@ function timeAgoLabel(isoDateTime) {
 const FILTERS = ["All", "Unread"];
 
 function Notifications() {
+  usePageTitle("Notifications");
   const [loading, setLoading] = useState(true);
   const [notifications, setNotifications] = useState([]);
   const [filter, setFilter] = useState("All");
