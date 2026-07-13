@@ -45,11 +45,15 @@ Start Server
 Accept Requests
 ---------------------
 res.json() automatically sends a 200 OK status if no status is specified. However, explicitly using res.status(200) makes the response clearer and keeps the code consistent with other responses like 201, 400, 401, or 500.
-
-
-
-
-
+---------
+Schema:
+Defines the structure.
+Model:
+Lets you interact with the database.
+-------------
+bcrypt.hash() is computationally expensive. It performs multiple rounds of hashing (controlled by the cost factor, 10 in our case). That takes measurable CPU time, so it runs asynchronously. await lets Node.js handle other requests while bcrypt is working, instead of blocking the event loop.
+That's why we don't use a synchronous hashing function in a web server.
+-----------
 
 
 
