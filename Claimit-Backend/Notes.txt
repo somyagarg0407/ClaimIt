@@ -54,8 +54,8 @@ Lets you interact with the database.
 bcrypt.hash() is computationally expensive. It performs multiple rounds of hashing (controlled by the cost factor, 10 in our case). That takes measurable CPU time, so it runs asynchronously. await lets Node.js handle other requests while bcrypt is working, instead of blocking the event loop.
 That's why we don't use a synchronous hashing function in a web server.
 -----------
-
-
+Specific routes first, dynamic routes later.
+------------
 
 
 

@@ -1,5 +1,5 @@
 const express = require("express");
-const authRoutes = require("./routes/auth.routes");
+const indexRoutes = require("./routes/index.routes");
 const app =express();
 
 app.use(express.json());
@@ -11,6 +11,6 @@ app.get("/", (req, res) => {
     });
 });
 
-app.use("/auth", authRoutes);
+app.use("/api/v1", indexRoutes);
 
 module.exports = app;

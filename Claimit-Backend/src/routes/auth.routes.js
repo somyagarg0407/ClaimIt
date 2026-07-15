@@ -13,6 +13,7 @@ router.get("/me", authMiddleware, (req, res) => {
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
+
 router.get("/profile", authMiddleware, (req, res) => {
   res.status(200).json({
     success: true,
