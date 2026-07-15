@@ -3,12 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!--
+      Favicon: use the icon asset.
+      A <link media> trick could swap favicons per scheme but browser support
+      is inconsistent — using the dark-context icon (dark lettermark on white)
+      works universally since browser tabs are typically light.
+    -->
+    <link rel="icon" type="image/svg+xml" href="/claimit-icon-dark.svg" />
+
     <title>ClaimIt — Find. Understand. Claim What's Yours.</title>
     <meta
       name="description"
       content="ClaimIt is an AI-powered platform that helps Indian citizens discover the government schemes, scholarships, subsidies and pensions they're eligible for."
     />
+
+    <!--
+      Flash-of-unstyled-theme prevention.
+      Runs synchronously before React hydrates so users with a stored dark
+      preference never see a white flash on reload. Matches the exact logic
+      in ThemeContext.jsx so the two stay in sync.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("claimit-theme");
+          if (
+            stored === "dark" ||
+            (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)
+          ) {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

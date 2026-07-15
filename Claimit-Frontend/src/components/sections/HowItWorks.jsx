@@ -39,14 +39,14 @@ const fadeUp = {
 
 function HowItWorks() {
   return (
-    <Section id="how-it-works" className="bg-brand-25/60">
+    <Section id="how-it-works" className="bg-brand-25/60 dark:bg-brand-600/[0.04]">
       <Container>
         <div className="mx-auto mb-16 flex max-w-2xl flex-col items-center gap-4 text-center">
           <Badge variant="outline">How It Works</Badge>
-          <h2 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h2 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             Three steps between you and your benefits
           </h2>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             No paperwork maze, no jargon — just a clear path from your
             situation to the schemes you actually qualify for.
           </p>
@@ -61,7 +61,7 @@ function HowItWorks() {
               viewport={{ once: true, amount: 0.4 }}
               variants={fadeUp}
               custom={i * 0.15}
-              className="relative flex flex-col gap-5 rounded-2xl border border-gray-100 bg-white p-8"
+              className="relative flex flex-col gap-5 rounded-2xl border border-gray-100 bg-white p-8 dark:border-white/[0.06] dark:bg-[#0A0A0A]"
             >
               <span className="tabular-mono text-sm font-semibold text-brand-300">
                 {step.number}
@@ -69,11 +69,11 @@ function HowItWorks() {
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-800 text-white">
                 <step.icon className="h-5 w-5" strokeWidth={2} />
               </div>
-              <h3 className="font-display text-lg font-semibold text-ink">{step.title}</h3>
-              <p className="text-[0.9375rem] leading-relaxed text-gray-500">{step.description}</p>
+              <h3 className="font-display text-lg font-semibold text-ink dark:text-white">{step.title}</h3>
+              <p className="text-[0.9375rem] leading-relaxed text-gray-500 dark:text-[#B5B5B5]">{step.description}</p>
 
               {i < STEPS.length - 1 && (
-                <div className="absolute right-[-1.25rem] top-1/2 hidden h-px w-6 -translate-y-1/2 bg-gray-200 md:block" />
+                <div className="absolute right-[-1.25rem] top-1/2 hidden h-px w-6 -translate-y-1/2 bg-gray-200 md:block dark:bg-white/[0.06]" />
               )}
             </motion.div>
           ))}

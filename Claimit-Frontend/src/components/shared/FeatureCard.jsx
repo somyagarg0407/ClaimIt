@@ -12,8 +12,8 @@ function FeatureCard({ icon: Icon, title, description, ...rest }) {
         <Icon className="h-5 w-5" strokeWidth={2} />
       </div>
       <div className="flex flex-col gap-2">
-        <h3 className="font-display text-lg font-semibold text-ink">{title}</h3>
-        <p className="text-[0.9375rem] leading-relaxed text-gray-500">{description}</p>
+        <h3 className="font-display text-lg font-semibold text-ink dark:text-white">{title}</h3>
+        <p className="text-[0.9375rem] leading-relaxed text-gray-500 dark:text-[#B5B5B5]">{description}</p>
       </div>
     </Card>
   );

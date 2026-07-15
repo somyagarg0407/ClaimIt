@@ -6,7 +6,8 @@ const Card = forwardRef(({ className, hover = false, as: Comp = "div", ...props 
     ref={ref}
     className={cn(
       "rounded-2xl border border-gray-100 bg-white shadow-card",
-      hover && "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lift hover:border-brand-200/70",
+      "dark:border-white/[0.06] dark:bg-[#0A0A0A] dark:shadow-card-dark",
+      hover && "transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lift hover:border-brand-200/70 dark:hover:shadow-lift-dark dark:hover:border-brand-600/20",
       className
     )}
     {...props}
@@ -20,12 +21,12 @@ const CardHeader = forwardRef(({ className, ...props }, ref) => (
 CardHeader.displayName = "CardHeader";
 
 const CardTitle = forwardRef(({ className, ...props }, ref) => (
-  <h3 ref={ref} className={cn("font-display text-lg font-semibold text-ink", className)} {...props} />
+  <h3 ref={ref} className={cn("font-display text-lg font-semibold text-ink dark:text-white", className)} {...props} />
 ));
 CardTitle.displayName = "CardTitle";
 
 const CardDescription = forwardRef(({ className, ...props }, ref) => (
-  <p ref={ref} className={cn("text-sm leading-relaxed text-gray-500", className)} {...props} />
+  <p ref={ref} className={cn("text-sm leading-relaxed text-gray-500 dark:text-[#B5B5B5]", className)} {...props} />
 ));
 CardDescription.displayName = "CardDescription";
 

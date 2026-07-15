@@ -11,12 +11,12 @@ import { cn } from "@/lib/utils";
 // Every type stays within the existing blue/black/gray palette — icon
 // shape carries the meaning, not color.
 const TYPE_META = {
-  scheme_recommendation: { icon: Sparkles, label: "New Match" },
-  claim_approved: { icon: CheckCircle2, label: "Claim Approved" },
-  claim_updated: { icon: Clock, label: "Claim Updated" },
-  documents_required: { icon: AlertCircle, label: "Action Needed" },
-  eligibility_reminder: { icon: Bell, label: "Reminder" },
-  platform_update: { icon: Megaphone, label: "Update" },
+  scheme_recommendation: { icon: Sparkles,     label: "New Match" },
+  claim_approved:        { icon: CheckCircle2, label: "Claim Approved" },
+  claim_updated:         { icon: Clock,        label: "Claim Updated" },
+  documents_required:    { icon: AlertCircle,  label: "Action Needed" },
+  eligibility_reminder:  { icon: Bell,         label: "Reminder" },
+  platform_update:       { icon: Megaphone,    label: "Update" },
 };
 
 /**
@@ -33,20 +33,21 @@ function NotificationItem({ type, title, description, timeLabel, read, onClick }
       onClick={onClick}
       className={cn(
         "flex w-full items-start gap-3.5 rounded-2xl border border-gray-100 p-4 text-left transition-colors duration-200 hover:border-brand-200/70 hover:bg-brand-25/40 sm:p-5",
-        !read && "bg-brand-25/50"
+        "dark:border-white/[0.06] dark:hover:border-brand-600/20 dark:hover:bg-brand-600/5",
+        !read && "bg-brand-25/50 dark:bg-brand-600/[0.06]"
       )}
     >
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700 dark:bg-brand-600/10 dark:text-brand-400">
         <Icon className="h-[18px] w-[18px]" strokeWidth={2} />
       </span>
 
       <span className="flex flex-1 flex-col gap-1">
         <span className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-ink">{title}</span>
+          <span className="text-sm font-semibold text-ink dark:text-white">{title}</span>
           {!read && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" aria-hidden="true" />}
         </span>
-        <span className="text-sm leading-relaxed text-gray-500">{description}</span>
-        <span className="text-xs font-medium text-gray-400">{timeLabel}</span>
+        <span className="text-sm leading-relaxed text-gray-500 dark:text-[#B5B5B5]">{description}</span>
+        <span className="text-xs font-medium text-gray-400 dark:text-[#8A8A8A]">{timeLabel}</span>
       </span>
     </button>
   );

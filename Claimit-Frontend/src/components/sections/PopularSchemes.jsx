@@ -28,15 +28,15 @@ const fadeUp = {
 
 function PopularSchemes() {
   return (
-    <Section className="bg-brand-25/60">
+    <Section className="bg-brand-25/60 dark:bg-brand-600/[0.04]">
       <Container>
         <div className="mb-14 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="flex max-w-xl flex-col gap-4">
             <Badge variant="outline">Popular Schemes</Badge>
-            <h2 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+            <h2 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
               A glimpse of what people are claiming
             </h2>
-            <p className="text-lg leading-relaxed text-gray-500">
+            <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
               A sample of the 20,000+ schemes in our database, with real match
               rates from citizen profiles like yours.
             </p>

@@ -9,6 +9,7 @@ import { PasswordInput } from "@/components/ui/PasswordInput";
 import { AuthCard } from "@/components/shared/AuthCard";
 import { AuthDivider } from "@/components/shared/AuthDivider";
 import { SocialLoginButton } from "@/components/shared/SocialLoginButton";
+import { ClaimItLogo } from "@/components/shared/ClaimItLogo";
 import { usePageTitle } from "@/lib/usePageTitle";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,14 +57,13 @@ function Register() {
       <Container>
         <div className="mx-auto flex w-full max-w-md flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-4 text-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-800 shadow-soft">
-              <span className="font-display text-lg font-bold text-white">C</span>
-            </span>
+            {/* Official ClaimIt icon — large, centred above the form */}
+            <ClaimItLogo variant="icon" h={52} />
             <div className="flex flex-col gap-2">
-              <h1 className="text-balance font-display text-display-sm font-bold text-ink sm:text-display-md">
+              <h1 className="text-balance font-display text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
                 Create Your Account
               </h1>
-              <p className="max-w-xs text-[0.9375rem] leading-relaxed text-gray-500">
+              <p className="max-w-xs text-[0.9375rem] leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
                 Join ClaimIt to discover, save, and track the benefits you&apos;re eligible for.
               </p>
             </div>
@@ -122,7 +122,7 @@ function Register() {
               />
 
               <div className="flex flex-col gap-1.5">
-                <label className="flex items-start gap-2.5 text-sm text-gray-600">
+                <label className="flex items-start gap-2.5 text-sm text-gray-600 dark:text-[#B5B5B5]">
                   <input
                     type="checkbox"
                     checked={agreed}
@@ -145,7 +145,7 @@ function Register() {
                   </span>
                 </label>
                 {errors.agreed && (
-                  <span className="flex items-center gap-1 pl-6 text-xs font-medium text-ink">
+                  <span className="flex items-center gap-1 pl-6 text-xs font-medium text-ink dark:text-white">
                     {errors.agreed}
                   </span>
                 )}
@@ -161,15 +161,15 @@ function Register() {
 
             <SocialLoginButton provider="google" label="Sign up with Google" />
 
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-gray-500 dark:text-[#B5B5B5]">
               Already have an account?{" "}
-              <Link to="/login" className="font-semibold text-brand-700 hover:text-brand-800">
+              <Link to="/login" className="font-semibold text-brand-700 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300">
                 Log in
               </Link>
             </p>
           </AuthCard>
 
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+          <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-[#8A8A8A]">
             <ShieldCheck className="h-3.5 w-3.5 text-brand-500" strokeWidth={2} />
             Your information is encrypted and securely stored.
           </div>

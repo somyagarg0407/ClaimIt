@@ -17,7 +17,7 @@ function Pagination({ page, totalPages, onChange }) {
         aria-label="Previous page"
         disabled={page === 1}
         onClick={() => onChange(page - 1)}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-colors duration-200 hover:border-brand-300 hover:text-brand-700 disabled:pointer-events-none disabled:opacity-40"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-colors duration-200 hover:border-brand-300 hover:text-brand-700 disabled:pointer-events-none disabled:opacity-40 dark:border-white/[0.08] dark:text-[#8A8A8A] dark:hover:border-brand-500/40 dark:hover:text-brand-400"
       >
         <ChevronLeft className="h-4 w-4" strokeWidth={2} />
       </button>
@@ -31,7 +31,9 @@ function Pagination({ page, totalPages, onChange }) {
           onClick={() => onChange(p)}
           className={cn(
             "tabular-mono flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-200",
-            p === page ? "bg-brand-800 text-white shadow-soft" : "text-gray-500 hover:bg-brand-25 hover:text-brand-700"
+            p === page
+              ? "bg-brand-800 text-white shadow-soft"
+              : "text-gray-500 hover:bg-brand-25 hover:text-brand-700 dark:text-[#8A8A8A] dark:hover:bg-brand-600/10 dark:hover:text-brand-400"
           )}
         >
           {p}
@@ -43,7 +45,7 @@ function Pagination({ page, totalPages, onChange }) {
         aria-label="Next page"
         disabled={page === totalPages}
         onClick={() => onChange(page + 1)}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-colors duration-200 hover:border-brand-300 hover:text-brand-700 disabled:pointer-events-none disabled:opacity-40"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-colors duration-200 hover:border-brand-300 hover:text-brand-700 disabled:pointer-events-none disabled:opacity-40 dark:border-white/[0.08] dark:text-[#8A8A8A] dark:hover:border-brand-500/40 dark:hover:text-brand-400"
       >
         <ChevronRight className="h-4 w-4" strokeWidth={2} />
       </button>

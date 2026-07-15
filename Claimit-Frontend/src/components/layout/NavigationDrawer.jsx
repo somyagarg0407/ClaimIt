@@ -17,22 +17,23 @@ import {
 import { DrawerItem } from "@/components/ui/DrawerItem";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { ClaimItLogo } from "@/components/shared/ClaimItLogo";
 
 const PRIMARY_ITEMS = [
-  { icon: Home, label: "Home", to: "/" },
-  { icon: Search, label: "Discover", to: "/discover" },
+  { icon: Home,         label: "Home",        to: "/" },
+  { icon: Search,       label: "Discover",    to: "/discover" },
   { icon: CheckCircle2, label: "Eligibility", to: "/eligibility" },
 ];
 
 const ACTIVITY_ITEMS = [
-  { icon: Heart, label: "My Schemes", to: "/my-schemes" },
-  { icon: FileText, label: "My Claims", to: "/my-claims" },
+  { icon: Heart,    label: "My Schemes", to: "/my-schemes" },
+  { icon: FileText, label: "My Claims",  to: "/my-claims" },
 ];
 
 const ACCOUNT_ITEMS = [
-  { icon: User, label: "Profile", to: "/profile" },
-  { icon: Bell, label: "Notifications", to: "/notifications" },
-  { icon: Settings, label: "Settings", to: "/settings" },
+  { icon: User,     label: "Profile",       to: "/profile" },
+  { icon: Bell,     label: "Notifications", to: "/notifications" },
+  { icon: Settings, label: "Settings",      to: "/settings" },
 ];
 
 /**
@@ -103,7 +104,7 @@ function NavigationDrawer({ open, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-ink/30 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-ink/30 backdrop-blur-sm dark:bg-black/60"
             onClick={onClose}
             aria-hidden="true"
           />
@@ -117,48 +118,43 @@ function NavigationDrawer({ open, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-y-0 left-0 z-[70] flex w-[300px] flex-col overflow-y-auto border-r border-gray-100 bg-white p-5 shadow-lift sm:w-[320px]"
+            className="fixed inset-y-0 left-0 z-[70] flex w-[300px] flex-col overflow-y-auto border-r border-gray-100 bg-white p-5 shadow-lift dark:border-white/[0.06] dark:bg-[#0A0A0A] dark:shadow-lift-dark sm:w-[320px]"
           >
             <div className="mb-2 flex items-center justify-between">
-              <Link to="/" onClick={onClose} className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-800">
-                  <span className="tabular-mono text-sm font-bold text-white">C</span>
-                </span>
-                <span className="font-display text-[1.125rem] font-bold tracking-tight text-ink">
-                  ClaimIt
-                </span>
+              <Link to="/" onClick={onClose} aria-label="ClaimIt home" className="flex items-center">
+                <ClaimItLogo variant="wordmark" h={26} />
               </Link>
               <button
                 type="button"
                 onClick={onClose}
                 aria-label="Close menu"
-                className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition-colors duration-200 hover:bg-gray-50 hover:text-ink"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition-colors duration-200 hover:bg-gray-50 hover:text-ink dark:text-[#8A8A8A] dark:hover:bg-white/[0.06] dark:hover:text-white"
               >
                 <X className="h-[18px] w-[18px]" strokeWidth={2} />
               </button>
             </div>
 
-            <div className="flex flex-col gap-1 border-t border-gray-100 pt-3">
+            <div className="flex flex-col gap-1 border-t border-gray-100 pt-3 dark:border-white/[0.06]">
               {PRIMARY_ITEMS.map((item) => (
                 <DrawerItem key={item.to} {...item} active={isActive(item.to)} onClick={onClose} />
               ))}
             </div>
 
-            <div className="mt-4 flex flex-col gap-1 border-t border-gray-100 pt-4">
+            <div className="mt-4 flex flex-col gap-1 border-t border-gray-100 pt-4 dark:border-white/[0.06]">
               <SectionHeading>My Activity</SectionHeading>
               {ACTIVITY_ITEMS.map((item) => (
                 <DrawerItem key={item.to} {...item} active={isActive(item.to)} onClick={onClose} />
               ))}
             </div>
 
-            <div className="mt-4 flex flex-col gap-1 border-t border-gray-100 pt-4">
+            <div className="mt-4 flex flex-col gap-1 border-t border-gray-100 pt-4 dark:border-white/[0.06]">
               <SectionHeading>Account</SectionHeading>
               {ACCOUNT_ITEMS.map((item) => (
                 <DrawerItem key={item.to} {...item} active={isActive(item.to)} onClick={onClose} />
               ))}
             </div>
 
-            <div className="mt-4 flex flex-col gap-1 border-t border-gray-100 pt-4">
+            <div className="mt-4 flex flex-col gap-1 border-t border-gray-100 pt-4 dark:border-white/[0.06]">
               <DrawerItem
                 icon={HelpCircle}
                 label="Help"
@@ -178,7 +174,7 @@ function NavigationDrawer({ open, onClose }) {
               the user's name/avatar + a functional Logout above instead of
               the disabled one.
             */}
-            <div className="mt-4 flex flex-col gap-2 border-t border-gray-100 pt-4">
+            <div className="mt-4 flex flex-col gap-2 border-t border-gray-100 pt-4 dark:border-white/[0.06]">
               <Button as={Link} to="/login" variant="outline" size="sm" onClick={onClose} className="w-full">
                 Login
               </Button>

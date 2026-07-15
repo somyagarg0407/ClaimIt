@@ -15,7 +15,7 @@ function CategoryChip({ label, icon: Icon, active = false, onClick }) {
         "flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200",
         active
           ? "border-brand-800 bg-brand-800 text-white shadow-soft"
-          : "border-gray-200 bg-white text-gray-600 hover:border-brand-300 hover:bg-brand-25 hover:text-brand-700"
+          : "border-gray-200 bg-white text-gray-600 hover:border-brand-300 hover:bg-brand-25 hover:text-brand-700 dark:border-white/[0.08] dark:bg-transparent dark:text-[#B5B5B5] dark:hover:border-brand-500/40 dark:hover:bg-brand-600/10 dark:hover:text-brand-400"
       )}
     >
       {Icon && <Icon className="h-3.5 w-3.5" strokeWidth={2} />}

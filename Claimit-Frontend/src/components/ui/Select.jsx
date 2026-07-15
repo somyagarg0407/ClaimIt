@@ -13,14 +13,15 @@ const Select = forwardRef(({ className, label, error, id, options = [], ...props
 
   return (
     <label htmlFor={selectId} className="flex flex-col gap-1.5">
-      {label && <span className="text-xs font-medium text-gray-500">{label}</span>}
+      {label && <span className="text-xs font-medium text-gray-500 dark:text-[#8A8A8A]">{label}</span>}
       <span className="relative flex items-center">
         <select
           ref={ref}
           id={selectId}
           className={cn(
             "h-11 w-full appearance-none rounded-xl border border-gray-200 bg-white pl-3.5 pr-9 text-sm font-medium text-ink transition-colors duration-200 hover:border-brand-300 focus:border-brand-400 focus:outline-none",
-            error && "border-ink focus:border-ink",
+            "dark:border-white/[0.08] dark:bg-[#111111] dark:text-white dark:hover:border-brand-500/40 dark:focus:border-brand-500",
+            error && "border-ink focus:border-ink dark:border-red-500/50",
             className
           )}
           aria-invalid={!!error}
@@ -37,10 +38,10 @@ const Select = forwardRef(({ className, label, error, id, options = [], ...props
             );
           })}
         </select>
-        <ChevronDown className="pointer-events-none absolute right-3 h-4 w-4 text-gray-400" strokeWidth={2} />
+        <ChevronDown className="pointer-events-none absolute right-3 h-4 w-4 text-gray-400 dark:text-[#8A8A8A]" strokeWidth={2} />
       </span>
       {error && (
-        <span id={`${selectId}-error`} className="flex items-center gap-1 text-xs font-medium text-ink">
+        <span id={`${selectId}-error`} className="flex items-center gap-1 text-xs font-medium text-ink dark:text-red-400">
           <AlertCircle className="h-3 w-3 shrink-0" strokeWidth={2} />
           {error}
         </span>

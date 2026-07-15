@@ -20,8 +20,8 @@ function ComingSoon({ title = "This page" }) {
         <Construction className="h-3.5 w-3.5" />
         In progress
       </Badge>
-      <h1 className="font-display text-display-sm font-bold text-ink">{title} is on its way</h1>
-      <p className="max-w-md text-lg leading-relaxed text-gray-500">
+      <h1 className="font-display text-display-sm font-bold text-ink dark:text-white">{title} is on its way</h1>
+      <p className="max-w-md text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
         We&apos;re still building this part of ClaimIt. Check back soon, or
         head back home in the meantime.
       </p>

@@ -23,7 +23,7 @@ const fadeUp = {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-white dark:bg-black">
       {/* Faint structural grid — subtle, not decorative noise */}
       <div className="pointer-events-none absolute inset-0 bg-grid-faint bg-[length:56px_56px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
 
@@ -53,7 +53,7 @@ function Hero() {
             animate="show"
             variants={fadeUp}
             custom={0.2}
-            className="max-w-md text-lg leading-relaxed text-gray-500"
+            className="max-w-md text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]"
           >
             ClaimIt uses AI to match you against 20,000+ government schemes,
             scholarships and subsidies — then shows you exactly what
@@ -81,10 +81,10 @@ function Hero() {
             animate="show"
             variants={fadeUp}
             custom={0.4}
-            className="flex w-full flex-col gap-4 border-t border-gray-100 pt-7 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 sm:gap-y-3"
+            className="flex w-full flex-col gap-4 border-t border-gray-100 pt-7 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 sm:gap-y-3 dark:border-white/[0.06]"
           >
             {TRUST_INDICATORS.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2 text-sm font-medium text-gray-500">
+              <div key={label} className="flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-[#B5B5B5]">
                 <Icon className="h-4 w-4 text-brand-600" strokeWidth={2} />
                 {label}
               </div>

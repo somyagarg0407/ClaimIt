@@ -14,13 +14,13 @@ function EmptyState({
   onAction,
 }) {
   return (
-    <div className="flex flex-col items-center gap-5 rounded-2xl border border-dashed border-gray-200 px-6 py-20 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
+    <div className="flex flex-col items-center gap-5 rounded-2xl border border-dashed border-gray-200 px-6 py-20 text-center dark:border-white/[0.08]">
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 dark:bg-brand-600/10 dark:text-brand-400">
         <Icon className="h-6 w-6" strokeWidth={2} />
       </div>
       <div className="flex flex-col gap-2">
-        <h3 className="font-display text-lg font-semibold text-ink">{title}</h3>
-        <p className="max-w-sm text-[0.9375rem] leading-relaxed text-gray-500">{description}</p>
+        <h3 className="font-display text-lg font-semibold text-ink dark:text-white">{title}</h3>
+        <p className="max-w-sm text-[0.9375rem] leading-relaxed text-gray-500 dark:text-[#B5B5B5]">{description}</p>
       </div>
       {actionLabel && (
         <Button variant="secondary" size="sm" onClick={onAction}>

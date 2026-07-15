@@ -27,13 +27,13 @@ const STAGES = [
 // Every status stays within the existing blue/black/gray palette — badge
 // variant + icon shape carry the meaning instead of red/green/yellow.
 const STATUS_META = {
-  Draft: { badgeVariant: "outline", icon: FileEdit, stageIndex: null },
-  Submitted: { badgeVariant: "soft", icon: Clock, stageIndex: 0 },
+  Draft:                { badgeVariant: "outline", icon: FileEdit,    stageIndex: null },
+  Submitted:            { badgeVariant: "soft",    icon: Clock,       stageIndex: 0 },
   "Documents Required": { badgeVariant: "outline", icon: AlertCircle, stageIndex: 1 },
-  "Under Review": { badgeVariant: "soft", icon: Eye, stageIndex: 2 },
-  Approved: { badgeVariant: "solid", icon: CheckCircle2, stageIndex: 3 },
-  Rejected: { badgeVariant: "outline", icon: XCircle, stageIndex: null },
-  Completed: { badgeVariant: "solid", icon: BadgeCheck, stageIndex: 4 },
+  "Under Review":       { badgeVariant: "soft",    icon: Eye,         stageIndex: 2 },
+  Approved:             { badgeVariant: "solid",   icon: CheckCircle2,stageIndex: 3 },
+  Rejected:             { badgeVariant: "outline", icon: XCircle,     stageIndex: null },
+  Completed:            { badgeVariant: "solid",   icon: BadgeCheck,  stageIndex: 4 },
 };
 
 function ClaimCard({
@@ -56,12 +56,12 @@ function ClaimCard({
     <Card hover className="flex flex-col gap-5 p-6">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3.5">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700 dark:bg-brand-600/10 dark:text-brand-400">
             <Icon className="h-5 w-5" strokeWidth={2} />
           </div>
           <div className="flex flex-col gap-1 pt-0.5">
-            <h3 className="font-display text-base font-semibold leading-snug text-ink">{title}</h3>
-            <span className="text-xs font-medium text-gray-400">
+            <h3 className="font-display text-base font-semibold leading-snug text-ink dark:text-white">{title}</h3>
+            <span className="text-xs font-medium text-gray-400 dark:text-[#8A8A8A]">
               {status === "Draft" ? `Started ${appliedLabel}` : `Applied ${appliedLabel} · Updated ${updatedLabel}`}
             </span>
           </div>
@@ -75,12 +75,12 @@ function ClaimCard({
 
       {showProgress && <ProgressSteps steps={STAGES} current={meta.stageIndex} />}
 
-      <div className="flex items-start gap-2 rounded-xl bg-brand-25/60 p-3">
-        <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-700" strokeWidth={2} />
-        <p className="text-xs leading-relaxed text-brand-800">{nextAction}</p>
+      <div className="flex items-start gap-2 rounded-xl bg-brand-25/60 p-3 dark:bg-brand-600/10">
+        <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-700 dark:text-brand-400" strokeWidth={2} />
+        <p className="text-xs leading-relaxed text-brand-800 dark:text-brand-400">{nextAction}</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 rounded-xl bg-gray-50/70 p-3.5">
+      <div className="grid grid-cols-2 gap-3 rounded-xl bg-gray-50/70 p-3.5 dark:bg-white/[0.04]">
         <Stat label="AI Match" value={`${matchPercent}%`} highlight />
         <Stat label="Processing" value={processingTime} />
       </div>
@@ -103,10 +103,10 @@ function ClaimCard({
 function Stat({ label, value, highlight = false }) {
   return (
     <div className="flex flex-col items-center gap-1 text-center">
-      <span className={cn("tabular-mono text-[0.8125rem] font-semibold", highlight ? "text-brand-700" : "text-ink")}>
+      <span className={cn("tabular-mono text-[0.8125rem] font-semibold", highlight ? "text-brand-700 dark:text-brand-400" : "text-ink dark:text-white")}>
         {value}
       </span>
-      <span className="text-[11px] font-medium text-gray-400">{label}</span>
+      <span className="text-[11px] font-medium text-gray-400 dark:text-[#8A8A8A]">{label}</span>
     </div>
   );
 }

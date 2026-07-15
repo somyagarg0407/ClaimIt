@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" fill="none" role="img" aria-label="ClaimIt">
+  <!-- C lettermark with inner checkmark -->
+  <g>
+    <!-- Outer C arc -->
+    <path d="M52 12C31.565 12 15 28.565 15 49s16.565 37 37 37c12.13 0 22.87-5.84 29.68-14.9l-10.46-7.17C66.9 70.14 59.82 74 52 74c-13.807 0-25-11.193-25-25s11.193-25 25-25c7.82 0 14.9 3.86 19.22 9.93L81.68 26.9C74.87 17.84 64.13 12 52 12z" fill="#FFFFFF"/>
+    <!-- Blue checkmark inside C -->
+    <path d="M34 48l9 9 18-18" stroke="#0077B6" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Vertical divider -->
+  <line x1="102" y1="22" x2="102" y2="76" stroke="#444444" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- "Claim" text -->
+  <text x="116" y="68" font-family="'Sora', 'Inter', sans-serif" font-weight="700" font-size="38" fill="#FFFFFF" letter-spacing="-1">Claim</text>
+  <!-- "It" text in brand blue -->
+  <text x="216" y="68" font-family="'Sora', 'Inter', sans-serif" font-weight="700" font-size="38" fill="#0077B6" letter-spacing="-1">It</text>
+</svg>

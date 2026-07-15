@@ -52,18 +52,18 @@ function Settings() {
 
         <div className="flex flex-col gap-6">
           <FormSection title="Account" description="Your sign-in details.">
-            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5">
+            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5 dark:border-white/[0.06]">
               <div className="flex flex-col gap-0.5">
-                <span className="text-sm font-medium text-ink">Email</span>
-                <span className="text-sm text-gray-500">aarav.sharma@example.com</span>
+                <span className="text-sm font-medium text-ink dark:text-white">Email</span>
+                <span className="text-sm text-gray-500 dark:text-[#B5B5B5]">aarav.sharma@example.com</span>
               </div>
             </div>
-            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5">
+            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5 dark:border-white/[0.06]">
               <div className="flex items-center gap-3">
                 <Lock className="h-4 w-4 text-gray-400" strokeWidth={2} />
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-sm font-medium text-ink">Password</span>
-                  <span className="text-sm text-gray-500">Last changed a while ago</span>
+                  <span className="text-sm font-medium text-ink dark:text-white">Password</span>
+                  <span className="text-sm text-gray-500 dark:text-[#B5B5B5]">Last changed a while ago</span>
                 </div>
               </div>
               <Button variant="outline" size="sm" disabled>
@@ -104,10 +104,10 @@ function Settings() {
               checked={personalizedRecs}
               onChange={(e) => setPersonalizedRecs(e.target.checked)}
             />
-            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5">
+            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5 dark:border-white/[0.06]">
               <div className="flex items-center gap-3">
                 <Download className="h-4 w-4 text-gray-400" strokeWidth={2} />
-                <span className="text-sm font-medium text-ink">Download my data</span>
+                <span className="text-sm font-medium text-ink dark:text-white">Download my data</span>
               </div>
               <Button variant="outline" size="sm" disabled>
                 Request Export
@@ -116,21 +116,21 @@ function Settings() {
           </FormSection>
 
           <FormSection title="Danger Zone" description="Irreversible and account-level actions.">
-            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5">
+            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5 dark:border-white/[0.06]">
               <div className="flex items-center gap-3">
                 <LogOut className="h-4 w-4 text-gray-400" strokeWidth={2} />
-                <span className="text-sm font-medium text-ink">Log out of ClaimIt</span>
+                <span className="text-sm font-medium text-ink dark:text-white">Log out of ClaimIt</span>
               </div>
               <Button variant="outline" size="sm" disabled>
                 Soon
               </Button>
             </div>
-            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5">
+            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-100 px-4 py-3.5 dark:border-white/[0.06]">
               <div className="flex items-center gap-3">
                 <Trash2 className="h-4 w-4 text-gray-400" strokeWidth={2} />
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-sm font-medium text-ink">Delete Account</span>
-                  <span className="text-sm text-gray-500">Permanently remove your data</span>
+                  <span className="text-sm font-medium text-ink dark:text-white">Delete Account</span>
+                  <span className="text-sm text-gray-500 dark:text-[#B5B5B5]">Permanently remove your data</span>
                 </div>
               </div>
               <Button variant="outline" size="sm" disabled>

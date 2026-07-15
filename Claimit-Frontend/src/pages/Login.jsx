@@ -9,6 +9,7 @@ import { PasswordInput } from "@/components/ui/PasswordInput";
 import { AuthCard } from "@/components/shared/AuthCard";
 import { AuthDivider } from "@/components/shared/AuthDivider";
 import { SocialLoginButton } from "@/components/shared/SocialLoginButton";
+import { ClaimItLogo } from "@/components/shared/ClaimItLogo";
 import { usePageTitle } from "@/lib/usePageTitle";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -49,14 +50,13 @@ function Login() {
       <Container>
         <div className="mx-auto flex w-full max-w-md flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-4 text-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-800 shadow-soft">
-              <span className="font-display text-lg font-bold text-white">C</span>
-            </span>
+            {/* Official ClaimIt icon — large, centred above the form */}
+            <ClaimItLogo variant="icon" h={52} />
             <div className="flex flex-col gap-2">
-              <h1 className="text-balance font-display text-display-sm font-bold text-ink sm:text-display-md">
+              <h1 className="text-balance font-display text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
                 Welcome Back
               </h1>
-              <p className="max-w-xs text-[0.9375rem] leading-relaxed text-gray-500">
+              <p className="max-w-xs text-[0.9375rem] leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
                 Continue discovering and claiming the benefits you&apos;re eligible for.
               </p>
             </div>
@@ -85,7 +85,7 @@ function Login() {
               />
 
               <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-600">
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-[#B5B5B5]">
                   <input
                     type="checkbox"
                     checked={remember}
@@ -112,15 +112,15 @@ function Login() {
 
             <SocialLoginButton provider="google" />
 
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-gray-500 dark:text-[#B5B5B5]">
               Don&apos;t have an account?{" "}
-              <Link to="/register" className="font-semibold text-brand-700 hover:text-brand-800">
+              <Link to="/register" className="font-semibold text-brand-700 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300">
                 Create one
               </Link>
             </p>
           </AuthCard>
 
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+          <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-[#8A8A8A]">
             <ShieldCheck className="h-3.5 w-3.5 text-brand-500" strokeWidth={2} />
             Your information is encrypted and securely stored.
           </div>

@@ -96,9 +96,9 @@ const DEFAULT_FILTERS = FILTER_FIELDS.reduce(
 
 function FilterPanel({ values = DEFAULT_FILTERS, onChange, onReset }) {
   return (
-    <div className="flex flex-col gap-5 rounded-2xl border border-gray-100 bg-white p-6">
+    <div className="flex flex-col gap-5 rounded-2xl border border-gray-100 bg-white p-6 dark:border-white/[0.06] dark:bg-[#0A0A0A]">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-sm font-semibold text-ink">
+        <div className="flex items-center gap-2 text-sm font-semibold text-ink dark:text-white">
           <SlidersHorizontal className="h-4 w-4 text-brand-600" strokeWidth={2} />
           Refine your results
         </div>

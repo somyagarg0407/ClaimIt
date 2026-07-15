@@ -9,8 +9,8 @@ function FormSection({ title, description, children }) {
   return (
     <Card className="flex flex-col gap-6 p-6 sm:p-8">
       <div className="flex flex-col gap-1">
-        <h2 className="font-display text-lg font-semibold text-ink">{title}</h2>
-        {description && <p className="text-sm text-gray-500">{description}</p>}
+        <h2 className="font-display text-lg font-semibold text-ink dark:text-white">{title}</h2>
+        {description && <p className="text-sm text-gray-500 dark:text-[#B5B5B5]">{description}</p>}
       </div>
       <div className="flex flex-col gap-5">{children}</div>
     </Card>

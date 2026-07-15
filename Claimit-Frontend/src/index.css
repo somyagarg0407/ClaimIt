@@ -8,8 +8,22 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /*
+   * Global theme transition — fires when the `dark` class is toggled on
+   * <html>. We animate only colour/shadow properties, never layout, so
+   * there are zero CLS-inducing side effects. Duration: 200ms (premium feel,
+   * not sluggish).  prefers-reduced-motion block below overrides this.
+   */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, opacity;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+  }
+
   body {
-    @apply bg-white text-gray-600 antialiased;
+    @apply bg-white text-gray-600 antialiased dark:bg-black dark:text-[#B5B5B5];
     font-family: "Inter", sans-serif;
     font-feature-settings: "cv11", "ss01";
   }
@@ -18,7 +32,7 @@
   h2,
   h3,
   h4 {
-    @apply font-display text-ink;
+    @apply font-display text-ink dark:text-white;
   }
 
   ::selection {

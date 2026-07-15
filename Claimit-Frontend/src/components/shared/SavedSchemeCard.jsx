@@ -36,7 +36,7 @@ function SavedSchemeCard({
     <Card hover className="flex flex-col gap-5 p-6">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3.5">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700 dark:bg-brand-600/10 dark:text-brand-400">
             <Icon className="h-5 w-5" strokeWidth={2} />
           </div>
           <div className="flex flex-col gap-1.5 pt-0.5">
@@ -48,7 +48,7 @@ function SavedSchemeCard({
                 {level}
               </Badge>
             </div>
-            <h3 className="font-display text-base font-semibold leading-snug text-ink">{title}</h3>
+            <h3 className="font-display text-base font-semibold leading-snug text-ink dark:text-white">{title}</h3>
           </div>
         </div>
 
@@ -56,29 +56,29 @@ function SavedSchemeCard({
           type="button"
           onClick={onRemove}
           aria-label="Remove from saved schemes"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-100 text-gray-300 transition-colors duration-200 hover:border-gray-200 hover:text-ink"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-100 text-gray-300 transition-colors duration-200 hover:border-gray-200 hover:text-ink dark:border-white/[0.06] dark:text-white/20 dark:hover:border-white/[0.12] dark:hover:text-white"
         >
           <X className="h-4 w-4" strokeWidth={2} />
         </button>
       </div>
 
-      <p className="line-clamp-2 text-sm leading-relaxed text-gray-500">{description}</p>
+      <p className="line-clamp-2 text-sm leading-relaxed text-gray-500 dark:text-[#B5B5B5]">{description}</p>
 
       {whyRecommended && (
-        <div className="flex items-start gap-2 rounded-xl bg-brand-25/60 p-3">
-          <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-700" strokeWidth={2} />
-          <p className="text-xs leading-relaxed text-brand-800">{whyRecommended}</p>
+        <div className="flex items-start gap-2 rounded-xl bg-brand-25/60 p-3 dark:bg-brand-600/10">
+          <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-700 dark:text-brand-400" strokeWidth={2} />
+          <p className="text-xs leading-relaxed text-brand-800 dark:text-brand-400">{whyRecommended}</p>
         </div>
       )}
 
-      <div className="grid grid-cols-3 gap-3 rounded-xl bg-gray-50/70 p-3.5">
+      <div className="grid grid-cols-3 gap-3 rounded-xl bg-gray-50/70 p-3.5 dark:bg-white/[0.04]">
         <Stat label="AI Match" value={`${matchPercent}%`} highlight />
         <Stat label="Benefit" value={benefit} />
         <Stat label="Status" value={matchTier(matchPercent)} />
       </div>
 
-      <div className="flex items-center justify-between gap-3 border-t border-gray-100 pt-4">
-        <span className="text-xs font-medium text-gray-400">Saved {savedLabel}</span>
+      <div className="flex items-center justify-between gap-3 border-t border-gray-100 pt-4 dark:border-white/[0.06]">
+        <span className="text-xs font-medium text-gray-400 dark:text-[#8A8A8A]">Saved {savedLabel}</span>
         <Button as={Link} to={`/schemes/${slug}`} variant="secondary" size="sm">
           View Details
           <ArrowRight className="h-3.5 w-3.5" />
@@ -94,12 +94,12 @@ function Stat({ label, value, highlight = false }) {
       <span
         className={cn(
           "tabular-mono text-[0.8125rem] font-semibold leading-tight",
-          highlight ? "text-brand-700" : "text-ink"
+          highlight ? "text-brand-700 dark:text-brand-400" : "text-ink dark:text-white"
         )}
       >
         {value}
       </span>
-      <span className="text-[11px] font-medium text-gray-400">{label}</span>
+      <span className="text-[11px] font-medium text-gray-400 dark:text-[#8A8A8A]">{label}</span>
     </div>
   );
 }

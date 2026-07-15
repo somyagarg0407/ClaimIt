@@ -5,7 +5,7 @@
  */
 function SectionHeading({ children }) {
   return (
-    <span className="px-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+    <span className="px-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-[#8A8A8A]">
       {children}
     </span>
   );

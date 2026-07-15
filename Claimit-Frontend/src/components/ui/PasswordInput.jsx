@@ -14,7 +14,7 @@ const PasswordInput = forwardRef(({ className, label, error, id, ...props }, ref
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={inputId} className="text-xs font-medium text-gray-500">
+        <label htmlFor={inputId} className="text-xs font-medium text-gray-500 dark:text-[#8A8A8A]">
           {label}
         </label>
       )}
@@ -25,7 +25,8 @@ const PasswordInput = forwardRef(({ className, label, error, id, ...props }, ref
           type={visible ? "text" : "password"}
           className={cn(
             "h-11 w-full rounded-xl border border-gray-200 bg-white px-3.5 pr-11 text-sm font-medium text-ink placeholder:font-normal placeholder:text-gray-400 transition-colors duration-200 hover:border-brand-300 focus:border-brand-400 focus:outline-none",
-            error && "border-ink focus:border-ink",
+            "dark:border-white/[0.08] dark:bg-[#111111] dark:text-white dark:placeholder:text-[#8A8A8A] dark:hover:border-brand-500/40 dark:focus:border-brand-500",
+            error && "border-ink focus:border-ink dark:border-red-500/50 dark:focus:border-red-500/50",
             className
           )}
           aria-invalid={!!error}
@@ -36,13 +37,13 @@ const PasswordInput = forwardRef(({ className, label, error, id, ...props }, ref
           type="button"
           onClick={() => setVisible((v) => !v)}
           aria-label={visible ? "Hide password" : "Show password"}
-          className="absolute right-3 flex h-6 w-6 items-center justify-center text-gray-400 transition-colors duration-200 hover:text-brand-600"
+          className="absolute right-3 flex h-6 w-6 items-center justify-center text-gray-400 transition-colors duration-200 hover:text-brand-600 dark:text-[#8A8A8A] dark:hover:text-brand-400"
         >
           {visible ? <EyeOff className="h-4 w-4" strokeWidth={2} /> : <Eye className="h-4 w-4" strokeWidth={2} />}
         </button>
       </div>
       {error && (
-        <span id={`${inputId}-error`} className="flex items-center gap-1 text-xs font-medium text-ink">
+        <span id={`${inputId}-error`} className="flex items-center gap-1 text-xs font-medium text-ink dark:text-red-400">
           <AlertCircle className="h-3 w-3 shrink-0" strokeWidth={2} />
           {error}
         </span>

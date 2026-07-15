@@ -3,7 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { Bell, Menu, Search } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { NavigationDrawer } from "@/components/layout/NavigationDrawer";
+import { ClaimItLogo } from "@/components/shared/ClaimItLogo";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -50,8 +52,8 @@ function Navbar() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-gray-100 bg-white/80 backdrop-blur-md"
-          : "border-b border-transparent bg-white"
+          ? "border-b border-gray-100 bg-white/80 backdrop-blur-md dark:border-white/[0.06] dark:bg-[#0A0A0A]/80"
+          : "border-b border-transparent bg-white dark:bg-[#0A0A0A]"
       )}
     >
       <Container className="flex h-[72px] items-center justify-between">
@@ -60,18 +62,13 @@ function Navbar() {
             type="button"
             aria-label="Open navigation menu"
             onClick={() => setDrawerOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 transition-colors duration-200 hover:bg-gray-50 hover:text-ink"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 transition-colors duration-200 hover:bg-gray-50 hover:text-ink dark:text-[#8A8A8A] dark:hover:bg-white/[0.06] dark:hover:text-white"
           >
             <Menu className="h-5 w-5" strokeWidth={2} />
           </button>
 
-          <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-800">
-              <span className="tabular-mono text-sm font-bold text-white">C</span>
-            </span>
-            <span className="font-display text-[1.125rem] font-bold tracking-tight text-ink">
-              ClaimIt
-            </span>
+          <Link to="/" className="flex items-center" aria-label="ClaimIt home">
+            <ClaimItLogo variant="wordmark" h={28} />
           </Link>
         </div>
 
@@ -83,7 +80,9 @@ function Navbar() {
               aria-current={isActive(link.href) ? "page" : undefined}
               className={cn(
                 "rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200",
-                isActive(link.href) ? "bg-brand-50 text-brand-800" : "text-gray-600 hover:bg-gray-50 hover:text-ink"
+                isActive(link.href)
+                  ? "bg-brand-50 text-brand-800 dark:bg-brand-600/10 dark:text-brand-400"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-ink dark:text-[#B5B5B5] dark:hover:bg-white/[0.06] dark:hover:text-white"
               )}
             >
               {link.label}
@@ -95,18 +94,21 @@ function Navbar() {
           <Link
             to="/discover"
             aria-label="Search schemes"
-            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 transition-colors duration-200 hover:bg-gray-50 hover:text-ink"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 transition-colors duration-200 hover:bg-gray-50 hover:text-ink dark:text-[#8A8A8A] dark:hover:bg-white/[0.06] dark:hover:text-white"
           >
             <Search className="h-[18px] w-[18px]" strokeWidth={2} />
           </Link>
           <Link
             to="/notifications"
             aria-label="Notifications"
-            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 transition-colors duration-200 hover:bg-gray-50 hover:text-ink"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 transition-colors duration-200 hover:bg-gray-50 hover:text-ink dark:text-[#8A8A8A] dark:hover:bg-white/[0.06] dark:hover:text-white"
           >
             <Bell className="h-[18px] w-[18px]" strokeWidth={2} />
           </Link>
-          <div className="mx-2 h-5 w-px bg-gray-200" />
+
+          <ThemeToggle className="mx-1" />
+
+          <div className="mx-1 h-5 w-px bg-gray-200 dark:bg-white/10" />
           <Button as={Link} to="/login" variant="ghost" size="sm">
             Login
           </Button>
