@@ -41,11 +41,11 @@ function Hero() {
             animate="show"
             variants={fadeUp}
             custom={0.1}
-            className="text-balance text-display-md font-bold text-ink sm:text-display-lg lg:text-display-xl"
+            className="text-balance text-display-md font-bold text-ink dark:text-white sm:text-display-lg lg:text-display-xl"
           >
             Find. Understand.
             <br />
-            <span className="text-brand-600">Claim What&apos;s Yours.</span>
+            <span className="text-brand-600 dark:text-brand-400">Claim What&apos;s Yours.</span>
           </motion.h1>
 
           <motion.p

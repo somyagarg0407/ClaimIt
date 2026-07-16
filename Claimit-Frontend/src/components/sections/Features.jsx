@@ -47,10 +47,10 @@ function Features() {
       <Container>
         <div className="mx-auto mb-16 flex max-w-2xl flex-col items-center gap-4 text-center">
           <Badge variant="outline">Why ClaimIt</Badge>
-          <h2 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h2 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             Built like a product, not a portal
           </h2>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             Government benefits shouldn&apos;t require a middleman. ClaimIt is
             the intelligence layer that makes them findable.
           </p>

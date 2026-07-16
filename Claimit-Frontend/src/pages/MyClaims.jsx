@@ -92,10 +92,10 @@ const ACTIONABLE_STATUSES = new Set(["Documents Required", "Draft"]);
 function SummaryStat({ label, value, highlight = false }) {
   return (
     <div className="flex flex-col items-center gap-0.5 px-2 text-center">
-      <span className={`tabular-mono text-lg font-semibold ${highlight ? "text-brand-700" : "text-ink"}`}>
+      <span className={`tabular-mono text-lg font-semibold ${highlight ? "text-brand-700 dark:text-brand-400" : "text-ink dark:text-white"}`}>
         {value}
       </span>
-      <span className="text-xs font-medium text-gray-400">{label}</span>
+      <span className="text-xs font-medium text-gray-400 dark:text-[#8A8A8A]">{label}</span>
     </div>
   );
 }
@@ -151,8 +151,8 @@ function MyClaims() {
             <ClipboardList className="h-3.5 w-3.5" />
             Your Application Tracker
           </Badge>
-          <h1 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">My Claims</h1>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <h1 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">My Claims</h1>
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             Every application you&apos;ve started or submitted — where it stands, and what happens
             next.
           </p>
@@ -182,13 +182,13 @@ function MyClaims() {
 
         {status === "ready" && claims.length > 0 && (
           <>
-            <div className="flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-gray-100 bg-white p-4 sm:justify-start sm:gap-1">
+            <div className="flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-gray-100 bg-white p-4 sm:justify-start sm:gap-1 dark:border-white/[0.06] dark:bg-[#0A0A0A]">
               <SummaryStat label="Total Claims" value={summary.total} />
-              <div className="h-9 w-px bg-gray-100" />
+              <div className="h-9 w-px bg-gray-100 dark:bg-white/[0.06]" />
               <SummaryStat label="In Progress" value={summary.inProgress} />
-              <div className="h-9 w-px bg-gray-100" />
+              <div className="h-9 w-px bg-gray-100 dark:bg-white/[0.06]" />
               <SummaryStat label="Approved" value={summary.approved} />
-              <div className="h-9 w-px bg-gray-100" />
+              <div className="h-9 w-px bg-gray-100 dark:bg-white/[0.06]" />
               <SummaryStat label="Needs Action" value={summary.needsAction} highlight={summary.needsAction > 0} />
             </div>
 
@@ -205,10 +205,10 @@ function MyClaims() {
             <Card className="flex flex-col items-center gap-4 p-8 text-center sm:flex-row sm:justify-between sm:text-left">
               <div className="flex flex-col gap-1">
                 <span className="flex items-center justify-center gap-2 text-sm font-semibold text-ink sm:justify-start">
-                  <Compass className="h-4 w-4 text-brand-600" strokeWidth={2} />
+                  <Compass className="h-4 w-4 text-brand-600 dark:text-brand-400" strokeWidth={2} />
                   Keep exploring
                 </span>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 dark:text-[#B5B5B5]">
                   Found something new? Start another claim any time — there's no limit to how many
                   schemes you can apply for.
                 </p>
@@ -232,18 +232,18 @@ function ClaimsSkeleton() {
         <Card key={i} className="flex flex-col gap-5 p-6">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-start gap-3.5">
-              <div className="h-11 w-11 shrink-0 animate-pulse rounded-xl bg-gray-100" />
+              <div className="h-11 w-11 shrink-0 animate-pulse rounded-xl bg-gray-100 dark:bg-white/[0.06]" />
               <div className="flex flex-col gap-2 pt-0.5">
-                <div className="h-4 w-32 animate-pulse rounded-full bg-gray-100" />
-                <div className="h-3 w-40 animate-pulse rounded-full bg-gray-100" />
+                <div className="h-4 w-32 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+                <div className="h-3 w-40 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
               </div>
             </div>
-            <div className="h-6 w-20 shrink-0 animate-pulse rounded-full bg-gray-100" />
+            <div className="h-6 w-20 shrink-0 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
           </div>
-          <div className="h-8 w-full animate-pulse rounded-full bg-gray-100" />
-          <div className="h-14 w-full animate-pulse rounded-xl bg-gray-100" />
-          <div className="h-16 w-full animate-pulse rounded-xl bg-gray-100" />
-          <div className="h-9 w-full animate-pulse rounded-xl bg-gray-100" />
+          <div className="h-8 w-full animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+          <div className="h-14 w-full animate-pulse rounded-xl bg-gray-100 dark:bg-white/[0.06]" />
+          <div className="h-16 w-full animate-pulse rounded-xl bg-gray-100 dark:bg-white/[0.06]" />
+          <div className="h-9 w-full animate-pulse rounded-xl bg-gray-100 dark:bg-white/[0.06]" />
         </Card>
       ))}
     </div>

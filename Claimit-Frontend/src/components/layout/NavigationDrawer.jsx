@@ -17,6 +17,7 @@ import {
 import { DrawerItem } from "@/components/ui/DrawerItem";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ClaimItLogo } from "@/components/shared/ClaimItLogo";
 
 const PRIMARY_ITEMS = [
@@ -118,7 +119,14 @@ function NavigationDrawer({ open, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-y-0 left-0 z-[70] flex w-[300px] flex-col overflow-y-auto border-r border-gray-100 bg-white p-5 shadow-lift dark:border-white/[0.06] dark:bg-[#0A0A0A] dark:shadow-lift-dark sm:w-[320px]"
+            className="fixed inset-y-0 left-0 z-[70] flex w-[300px] flex-col overflow-y-auto p-5 sm:w-[320px]
+              border-r shadow-[4px_0_40px_rgba(0,0,0,0.10)]
+              border-white/60 bg-white/[0.72] backdrop-blur-2xl
+              [background-image:linear-gradient(160deg,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.20)_100%)]
+              [box-shadow:4px_0_40px_rgba(0,0,0,0.10),inset_0_1px_0_rgba(255,255,255,0.90)]
+              dark:border-white/[0.06] dark:bg-white/[0.04] dark:backdrop-blur-2xl
+              dark:[background-image:linear-gradient(160deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0.01)_100%)]
+              dark:[box-shadow:4px_0_40px_rgba(0,0,0,0.50),inset_0_1px_0_rgba(255,255,255,0.06)]"
           >
             <div className="mb-2 flex items-center justify-between">
               <Link to="/" onClick={onClose} aria-label="ClaimIt home" className="flex items-center">
@@ -174,7 +182,13 @@ function NavigationDrawer({ open, onClose }) {
               the user's name/avatar + a functional Logout above instead of
               the disabled one.
             */}
-            <div className="mt-4 flex flex-col gap-2 border-t border-gray-100 pt-4 dark:border-white/[0.06]">
+            {/* Theme toggle — mobile users have no other way to switch themes */}
+            <div className="mt-4 flex items-center justify-between gap-3 rounded-xl border border-gray-100 px-4 py-2.5 dark:border-white/[0.06]">
+              <span className="text-sm font-medium text-gray-600 dark:text-[#B5B5B5]">Appearance</span>
+              <ThemeToggle />
+            </div>
+
+            <div className="mt-3 flex flex-col gap-2 border-t border-gray-100 pt-4 dark:border-white/[0.06]">
               <Button as={Link} to="/login" variant="outline" size="sm" onClick={onClose} className="w-full">
                 Login
               </Button>

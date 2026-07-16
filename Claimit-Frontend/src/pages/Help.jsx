@@ -102,10 +102,10 @@ function Help() {
             <LifeBuoy className="h-3.5 w-3.5" />
             Help Center
           </Badge>
-          <h1 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h1 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             How can we help?
           </h1>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             Search our help articles, or browse the essentials below to get the most out of
             ClaimIt.
           </p>
@@ -120,7 +120,7 @@ function Help() {
         />
 
         <div className="flex flex-col gap-5">
-          <h2 className="font-display text-xl font-semibold text-ink">Getting Started</h2>
+          <h2 className="font-display text-xl font-semibold text-ink dark:text-white">Getting Started</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {GETTING_STARTED.map((item) => (
               <FeatureCard key={item.title} as={Link} to={item.to} {...item} />
@@ -129,7 +129,7 @@ function Help() {
         </div>
 
         <div className="flex flex-col gap-5">
-          <h2 className="font-display text-xl font-semibold text-ink">Frequently Asked Questions</h2>
+          <h2 className="font-display text-xl font-semibold text-ink dark:text-white">Frequently Asked Questions</h2>
           {filteredFaqs.length > 0 ? (
             <Accordion items={filteredFaqs} />
           ) : (
@@ -142,12 +142,12 @@ function Help() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <Card className="flex flex-col gap-4 p-6 sm:p-8">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700 dark:bg-brand-600/10 dark:text-brand-400">
               <Mail className="h-5 w-5" strokeWidth={2} />
             </div>
             <div className="flex flex-col gap-1.5">
-              <h3 className="font-display text-base font-semibold text-ink">Contact Support</h3>
-              <p className="text-sm leading-relaxed text-gray-500">
+              <h3 className="font-display text-base font-semibold text-ink dark:text-white">Contact Support</h3>
+              <p className="text-sm leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
                 Can't find what you're looking for? Our team typically replies within one business
                 day.
               </p>
@@ -159,12 +159,12 @@ function Help() {
           </Card>
 
           <Card className="flex flex-col gap-4 p-6 sm:p-8">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700 dark:bg-brand-600/10 dark:text-brand-400">
               <Flag className="h-5 w-5" strokeWidth={2} />
             </div>
             <div className="flex flex-col gap-1.5">
-              <h3 className="font-display text-base font-semibold text-ink">Report an Issue</h3>
-              <p className="text-sm leading-relaxed text-gray-500">
+              <h3 className="font-display text-base font-semibold text-ink dark:text-white">Report an Issue</h3>
+              <p className="text-sm leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
                 Spotted incorrect scheme information or a bug? Let us know and we'll look into it.
               </p>
             </div>

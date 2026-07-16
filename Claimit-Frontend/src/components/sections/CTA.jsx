@@ -30,7 +30,7 @@ function CTA() {
               to="/eligibility"
               size="lg"
               variant="secondary"
-              className="border-none bg-white text-brand-800 hover:bg-brand-50"
+              className="border-none bg-white text-brand-800 hover:bg-brand-50 dark:bg-white dark:text-brand-800 dark:hover:bg-brand-50"
             >
               Check Eligibility
               <ArrowRight className="h-4 w-4" />

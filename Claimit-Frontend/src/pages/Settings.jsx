@@ -40,10 +40,10 @@ function Settings() {
             <SettingsIcon className="h-3.5 w-3.5" />
             Account Settings
           </Badge>
-          <h1 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h1 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             Settings
           </h1>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             Manage your account, notification preferences, and privacy — all in one place.
           </p>
         </div>
@@ -141,7 +141,7 @@ function Settings() {
 
           <div className="flex flex-col-reverse items-center gap-3 sm:flex-row sm:justify-end">
             {savedAt && (
-              <span className="flex items-center gap-1.5 text-sm font-medium text-brand-700">
+              <span className="flex items-center gap-1.5 text-sm font-medium text-brand-700 dark:text-brand-400">
                 <Check className="h-4 w-4" strokeWidth={2} />
                 Saved
               </span>

@@ -37,7 +37,7 @@ function ClaimItLogo({ variant = "wordmark", h = 32, className = "" }) {
      *   L 15 24  →  22 30  →  33 18
      */
     const arc = "M 35.88 13.29 A 16 16 0 1 0 35.88 34.71";
-    const check = "M 15 24 L 21 30 L 33 17";
+    const check = "M 17 24 L 22 29 L 31 18";
 
     return (
       <svg
@@ -99,7 +99,7 @@ function ClaimItLogo({ variant = "wordmark", h = 32, className = "" }) {
    * Total width: 60 icon + 12 gap + 1 divider + 10 gap + ~180 text + margin ≈ 272
    */
   const wordArc   = "M 38.38 13.95 A 18 18 0 1 0 38.38 38.05";
-  const wordCheck = "M 17 26 L 23 32 L 35 19";
+  const wordCheck = "M 19 26 L 24 31 L 33 21";
   const wordW = Math.round(h * (272 / 52));
 
   return (

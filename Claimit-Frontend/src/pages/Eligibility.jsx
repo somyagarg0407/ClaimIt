@@ -224,10 +224,10 @@ function Eligibility() {
             <Sparkles className="h-3.5 w-3.5" />
             AI-Powered Eligibility Check
           </Badge>
-          <h1 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h1 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             Check Your Eligibility
           </h1>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             Answer a few quick questions and our AI will instantly explain which schemes you
             qualify for — no paperwork, no guesswork.
           </p>
@@ -264,7 +264,7 @@ function Eligibility() {
                 })}
               </motion.div>
 
-              <div className="flex items-center justify-between border-t border-gray-100 pt-6">
+              <div className="flex items-center justify-between border-t border-gray-100 pt-6 dark:border-white/[0.06]">
                 {step > 0 ? (
                   <Button type="button" variant="ghost" onClick={handleBack}>
                     <ArrowLeft className="h-4 w-4" />
@@ -314,19 +314,19 @@ function ResultSkeleton() {
   return (
     <Card className="flex flex-col gap-6 p-8 sm:p-10">
       <div className="flex items-center gap-5">
-        <div className="h-24 w-24 shrink-0 animate-pulse rounded-full bg-gray-100" />
+        <div className="h-24 w-24 shrink-0 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
         <div className="flex flex-1 flex-col gap-2.5">
-          <div className="h-4 w-1/3 animate-pulse rounded-full bg-gray-100" />
-          <div className="h-5 w-2/3 animate-pulse rounded-full bg-gray-100" />
-          <div className="h-3 w-1/2 animate-pulse rounded-full bg-gray-100" />
+          <div className="h-4 w-1/3 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+          <div className="h-5 w-2/3 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+          <div className="h-3 w-1/2 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
         </div>
       </div>
-      <div className="flex flex-col gap-2.5 border-t border-gray-100 pt-6">
-        <div className="h-3 w-full animate-pulse rounded-full bg-gray-100" />
-        <div className="h-3 w-5/6 animate-pulse rounded-full bg-gray-100" />
-        <div className="h-3 w-4/6 animate-pulse rounded-full bg-gray-100" />
+      <div className="flex flex-col gap-2.5 border-t border-gray-100 pt-6 dark:border-white/[0.06]">
+        <div className="h-3 w-full animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+        <div className="h-3 w-5/6 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+        <div className="h-3 w-4/6 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
       </div>
-      <p className="text-center text-sm font-medium text-gray-400">Analyzing your eligibility…</p>
+      <p className="text-center text-sm font-medium text-gray-400 dark:text-[#8A8A8A]">Analyzing your eligibility…</p>
     </Card>
   );
 }
@@ -357,18 +357,18 @@ function EligibilityResult({ result, category, onRetake }) {
               <Sparkles className="h-3 w-3" strokeWidth={2} />
               AI Assessment
             </Badge>
-            <h2 className="font-display text-xl font-semibold text-ink">{tierCopy.title}</h2>
-            <p className="text-sm leading-relaxed text-gray-500">{tierCopy.note}</p>
+            <h2 className="font-display text-xl font-semibold text-ink dark:text-white">{tierCopy.title}</h2>
+            <p className="text-sm leading-relaxed text-gray-500 dark:text-[#B5B5B5]">{tierCopy.note}</p>
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-gray-100 pt-6">
-          <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">Why this result</span>
+        <div className="flex flex-col gap-3 border-t border-gray-100 pt-6 dark:border-white/[0.06]">
+          <span className="text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-[#8A8A8A]">Why this result</span>
           <ul className="flex flex-col gap-2.5">
             {result.reasons.map((r) => (
-              <li key={r.text} className="flex items-start gap-2.5 text-sm leading-relaxed text-gray-600">
+              <li key={r.text} className="flex items-start gap-2.5 text-sm leading-relaxed text-gray-600 dark:text-[#B5B5B5]">
                 {r.matched ? (
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" strokeWidth={2} />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600 dark:text-brand-400" strokeWidth={2} />
                 ) : (
                   <Circle className="mt-0.5 h-4 w-4 shrink-0 text-gray-300" strokeWidth={2} />
                 )}
@@ -378,7 +378,7 @@ function EligibilityResult({ result, category, onRetake }) {
           </ul>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-gray-100 pt-6 sm:flex-row">
+        <div className="flex flex-col gap-3 border-t border-gray-100 pt-6 sm:flex-row dark:border-white/[0.06]">
           <Button as={Link} to="/discover" className="w-full sm:w-auto">
             Explore Matched Schemes
             <ArrowRight className="h-4 w-4" />
@@ -392,7 +392,7 @@ function EligibilityResult({ result, category, onRetake }) {
 
       {topSchemes.length > 0 && (
         <div className="flex flex-col gap-4">
-          <h3 className="font-display text-lg font-semibold text-ink">Top matches for you</h3>
+          <h3 className="font-display text-lg font-semibold text-ink dark:text-white">Top matches for you</h3>
           <div className="flex flex-col gap-4">
             {topSchemes.map((s) => (
               <SchemeCard

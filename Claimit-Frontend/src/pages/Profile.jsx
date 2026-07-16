@@ -105,10 +105,10 @@ function Profile() {
             <CircleUserRound className="h-3.5 w-3.5" />
             Your Profile
           </Badge>
-          <h1 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h1 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             Profile
           </h1>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             Keep your details up to date — they power every eligibility check and AI match score.
           </p>
         </div>
@@ -196,7 +196,7 @@ function Profile() {
             />
 
             <div className="flex flex-col gap-2.5">
-              <span className="text-xs font-medium text-gray-500">Interested Scheme Categories</span>
+              <span className="text-xs font-medium text-gray-500 dark:text-[#8A8A8A]">Interested Scheme Categories</span>
               <div className="flex flex-wrap gap-2.5">
                 {SCHEME_CATEGORY_LABELS.map((cat) => (
                   <CategoryChip
@@ -213,7 +213,7 @@ function Profile() {
 
           <div className="flex flex-col-reverse items-center gap-3 sm:flex-row sm:justify-end">
             {savedAt && (
-              <span className="flex items-center gap-1.5 text-sm font-medium text-brand-700">
+              <span className="flex items-center gap-1.5 text-sm font-medium text-brand-700 dark:text-brand-400">
                 <Check className="h-4 w-4" strokeWidth={2} />
                 Saved
               </span>

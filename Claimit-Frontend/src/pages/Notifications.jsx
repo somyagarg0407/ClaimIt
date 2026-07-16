@@ -119,10 +119,10 @@ function Notifications() {
             <Bell className="h-3.5 w-3.5" />
             Stay Updated
           </Badge>
-          <h1 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h1 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             Notifications
           </h1>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             New matches, claim updates, and reminders — all in one place.
           </p>
         </div>
@@ -184,11 +184,11 @@ function NotificationsSkeleton() {
     <Card className="flex flex-col gap-3 p-4">
       {Array.from({ length: 5 }).map((_, i) => (
         <div key={i} className="flex items-start gap-3.5 rounded-2xl p-4">
-          <div className="h-10 w-10 shrink-0 animate-pulse rounded-xl bg-gray-100" />
+          <div className="h-10 w-10 shrink-0 animate-pulse rounded-xl bg-gray-100 dark:bg-white/[0.06]" />
           <div className="flex flex-1 flex-col gap-2">
-            <div className="h-4 w-1/2 animate-pulse rounded-full bg-gray-100" />
-            <div className="h-3 w-3/4 animate-pulse rounded-full bg-gray-100" />
-            <div className="h-3 w-16 animate-pulse rounded-full bg-gray-100" />
+            <div className="h-4 w-1/2 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+            <div className="h-3 w-3/4 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+            <div className="h-3 w-16 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
           </div>
         </div>
       ))}

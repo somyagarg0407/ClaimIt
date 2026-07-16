@@ -14,8 +14,14 @@ import Profile from "@/pages/Profile";
 import Notifications from "@/pages/Notifications";
 import Settings from "@/pages/Settings";
 import Help from "@/pages/Help";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsOfService from "@/pages/TermsOfService";
+import CookiePolicy from "@/pages/CookiePolicy";
 import NotFound from "@/pages/NotFound";
 import ComingSoon from "@/pages/ComingSoon";
+
 
 /**
  * Route map for the app. Add new pages here as they're built — Navbar and
@@ -47,11 +53,11 @@ function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<Help />} />
-          <Route path="/about" element={<ComingSoon title="About" />} />
-          <Route path="/contact" element={<ComingSoon title="Contact" />} />
-          <Route path="/privacy" element={<ComingSoon title="Privacy Policy" />} />
-          <Route path="/terms" element={<ComingSoon title="Terms of Service" />} />
-          <Route path="/cookies" element={<ComingSoon title="Cookie Policy" />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/cookies" element={<CookiePolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

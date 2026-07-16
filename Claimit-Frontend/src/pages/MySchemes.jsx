@@ -152,16 +152,16 @@ function MySchemes() {
             <Bookmark className="h-3.5 w-3.5" />
             Your Saved Collection
           </Badge>
-          <h1 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h1 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             My Schemes
           </h1>
-          <p className="text-lg leading-relaxed text-gray-500">
+          <p className="text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             The opportunities you&apos;ve saved — review, compare, and apply whenever you&apos;re
             ready.
           </p>
           {!loading && hasAnySaved && (
-            <p className="text-sm text-gray-400">
-              <span className="tabular-mono font-semibold text-ink">{savedRecords.length}</span>{" "}
+            <p className="text-sm text-gray-400 dark:text-[#8A8A8A]">
+              <span className="tabular-mono font-semibold text-ink dark:text-white">{savedRecords.length}</span>{" "}
               scheme{savedRecords.length === 1 ? "" : "s"} saved
             </p>
           )}
@@ -242,10 +242,10 @@ function MySchemes() {
             <Card className="flex flex-col items-center gap-4 p-8 text-center sm:flex-row sm:justify-between sm:text-left">
               <div className="flex flex-col gap-1">
                 <span className="flex items-center justify-center gap-2 text-sm font-semibold text-ink sm:justify-start">
-                  <Compass className="h-4 w-4 text-brand-600" strokeWidth={2} />
+                  <Compass className="h-4 w-4 text-brand-600 dark:text-brand-400" strokeWidth={2} />
                   Keep exploring
                 </span>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 dark:text-[#B5B5B5]">
                   There are 20,000+ schemes waiting to be discovered — new matches show up as your
                   profile improves.
                 </p>
@@ -269,20 +269,20 @@ function SavedSchemesSkeleton() {
         <Card key={i} className="flex flex-col gap-5 p-6">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-start gap-3.5">
-              <div className="h-11 w-11 shrink-0 animate-pulse rounded-xl bg-gray-100" />
+              <div className="h-11 w-11 shrink-0 animate-pulse rounded-xl bg-gray-100 dark:bg-white/[0.06]" />
               <div className="flex flex-col gap-2 pt-0.5">
-                <div className="h-4 w-24 animate-pulse rounded-full bg-gray-100" />
-                <div className="h-4 w-40 animate-pulse rounded-full bg-gray-100" />
+                <div className="h-4 w-24 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+                <div className="h-4 w-40 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
               </div>
             </div>
-            <div className="h-9 w-9 shrink-0 animate-pulse rounded-full bg-gray-100" />
+            <div className="h-9 w-9 shrink-0 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
           </div>
           <div className="flex flex-col gap-2">
-            <div className="h-3 w-full animate-pulse rounded-full bg-gray-100" />
-            <div className="h-3 w-2/3 animate-pulse rounded-full bg-gray-100" />
+            <div className="h-3 w-full animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
+            <div className="h-3 w-2/3 animate-pulse rounded-full bg-gray-100 dark:bg-white/[0.06]" />
           </div>
-          <div className="h-16 w-full animate-pulse rounded-xl bg-gray-100" />
-          <div className="h-9 w-full animate-pulse rounded-xl bg-gray-100" />
+          <div className="h-16 w-full animate-pulse rounded-xl bg-gray-100 dark:bg-white/[0.06]" />
+          <div className="h-9 w-full animate-pulse rounded-xl bg-gray-100 dark:bg-white/[0.06]" />
         </Card>
       ))}
     </div>

@@ -53,7 +53,11 @@ function Register() {
   }
 
   return (
-    <Section className="pt-10 pb-20 lg:pt-14 lg:pb-24">
+    <Section className="relative overflow-hidden pt-10 pb-20 lg:pt-14 lg:pb-24">
+      {/* Liquid glass background */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(0,119,182,0.18)_0%,transparent_65%),linear-gradient(175deg,#e8f4fb_0%,#f0f8ff_40%,#ffffff_100%)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(0,180,216,0.14)_0%,transparent_65%),linear-gradient(175deg,#050d14_0%,#060e18_40%,#0A0A0A_100%)]" />
+      {/* Soft orb glow behind the card */}
+      <div className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-400/[0.08] blur-[80px] dark:bg-brand-400/[0.06]" />
       <Container>
         <div className="mx-auto flex w-full max-w-md flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-4 text-center">
@@ -69,7 +73,13 @@ function Register() {
             </div>
           </div>
 
-          <AuthCard className="w-full">
+          <AuthCard className="w-full
+            border-white/70 bg-white/[0.60] backdrop-blur-xl
+            [background-image:linear-gradient(145deg,rgba(255,255,255,0.80)_0%,rgba(255,255,255,0.35)_100%)]
+            [box-shadow:0_8px_32px_rgba(0,119,182,0.08),0_1px_0_rgba(255,255,255,0.9)_inset,0_-1px_0_rgba(0,0,0,0.04)_inset]
+            dark:border-white/[0.08] dark:bg-white/[0.05] dark:backdrop-blur-xl
+            dark:[background-image:linear-gradient(145deg,rgba(255,255,255,0.07)_0%,rgba(255,255,255,0.02)_100%)]
+            dark:[box-shadow:0_8px_40px_rgba(0,0,0,0.40),0_1px_0_rgba(255,255,255,0.07)_inset]">
             <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
               <Input
                 label="Full Name"

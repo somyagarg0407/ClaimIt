@@ -68,10 +68,10 @@ function Discover() {
             <Compass className="h-3.5 w-3.5" />
             20,000+ Schemes, One Search
           </Badge>
-          <h1 className="text-balance text-display-sm font-bold text-ink sm:text-display-md">
+          <h1 className="text-balance text-display-sm font-bold text-ink dark:text-white sm:text-display-md">
             Discover Schemes
           </h1>
-          <p className="max-w-xl text-lg leading-relaxed text-gray-500">
+          <p className="max-w-xl text-lg leading-relaxed text-gray-500 dark:text-[#B5B5B5]">
             Search and filter every government scheme, scholarship and subsidy
             available to you — ranked by how well you match.
           </p>

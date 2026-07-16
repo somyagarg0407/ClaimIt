@@ -26,7 +26,8 @@ function ScoreRing({ value = 92, size = 88, strokeWidth = 8, label }) {
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#CAF0F8"
+          stroke="currentColor"
+          className="text-brand-100 dark:text-white/[0.08]"
           strokeWidth={strokeWidth}
         />
         <motion.circle
@@ -45,7 +46,7 @@ function ScoreRing({ value = 92, size = 88, strokeWidth = 8, label }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="tabular-mono text-lg font-semibold text-brand-800">{value}%</span>
+        <span className="tabular-mono text-lg font-semibold text-brand-800 dark:text-brand-400">{value}%</span>
         {label && <span className="text-[10px] font-medium text-gray-400">{label}</span>}
       </div>
     </div>
