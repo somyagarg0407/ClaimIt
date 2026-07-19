@@ -56,19 +56,101 @@ That's why we don't use a synchronous hashing function in a web server.
 -----------
 Specific routes first, dynamic routes later.
 ------------
+typeof req.query.maxAnnualIncome == string as initial;ly we take directly in form of js language hence every thing is string later we can change it
+=====================================
+if (featured === "true") {
+    query.featured = true;
+} else {
+    query.featured = false;
+}
 
+&&
 
+query.featured = featured === "true";
 
-
-
-
-
-
-
-
-
-
-
+are same listening
+=====================================
+$regex and $or and $i like more features in mongoDB
+==================================
+(
+    Name contains "kisan"
+    OR
+    Short Description contains "kisan"
+    OR
+    Full Description contains "kisan"
+    OR
+    Tags contain "kisan"
+)
+AND
+Category = Farmers
+AND
+State = Delhi
+AND
+Featured = true
+----------------------------------------
+$regex: search, // use for searching
+$options: "i // use fro case in-sensitive
+------------------------------------
+skip = limit × (page - 1) // in pagination
+------------
+const pageNumber = Math.max(1, Number(page) || 1);
+const limitNumber = Math.max(1, Number(limit) || 10);
+ really important
+--------
+Math.max = Minimum boundary (don't go below this)
+Math.min = Maximum boundary (don't go above this)
+-----------
+1=ascending
+-1=descending
+==========================
+Why Math.ceil()? will work for pagination like how many pages etc
+Math.ceil(4.7) → 5
+Math.ceil(5) → 5
+Math.ceil(2.1) → 3
+==========================
+| Mathematics | MongoDB                          |
+| ----------- | -------------------------------- |
+| `<`         | `$lt` *(less than)*              |
+| `>`         | `$gt` *(greater than)*           |
+| `<=`        | `$lte` *(less than or equal)*    |
+| `>=`        | `$gte` *(greater than or equal)* |
+============================
+const fruits = "Apple,Mango,Banana";
+const arr = fruits.split(","); // output ["Apple", "Mango", "Banana"] liek it convert it into array
+-----------------
+$in
+Meaning:
+"Match if the field contains ANY value from this array."
+-------------------
+The .filter(Boolean) removes any empty strings.
+---------------------
+const categories = category
+  .split(",") 
+  .map((item) => item.trim()) // map visites each element of array one by one
+  .filter(Boolean); 
+---------------------------
+.filter(Boolean) treats like .filter((item) => Boolean(item))
+----------------
+Promise.all() which basically says:
+"Start all these async tasks together, then wait until all of them finish."
+---------------
+Instead of an array:
+.select([name, estimatedBenefit, category])
+Mongoose expects a space-separated string.
+----------------
+const schemes = await Scheme.find(query);
+does not return plain JavaScript objects.
+It returns Mongoose Documents (special objects).
+----------------
+.lean() provides
+That makes queries:
+ Faster
+ Use less memory
+ Perfect for read-only APIs like GET /schemes
+--------------
+Collection Scan (COLLSCAN) // scan one by one
+--------------
+Index = Shortcut to find data quickly.
 
 
 
