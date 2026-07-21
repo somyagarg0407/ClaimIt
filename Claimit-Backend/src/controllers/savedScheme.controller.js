@@ -1,5 +1,5 @@
 const SavedScheme = require("../models/savedScheme.model");
-const Scheme = require("../models/Scheme");
+const Scheme = require("../models/Scheme.model");
 
 const saveScheme = async (req, res) => {
   const { schemeId } = req.body;

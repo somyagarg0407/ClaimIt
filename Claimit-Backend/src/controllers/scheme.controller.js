@@ -1,4 +1,4 @@
-const Scheme = require("../models/Scheme");
+const Scheme = require("../models/Scheme.model");
 
 const getAllSchemes = async (req, res) => {
   try {
