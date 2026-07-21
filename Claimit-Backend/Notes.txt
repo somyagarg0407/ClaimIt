@@ -151,16 +151,30 @@ That makes queries:
 Collection Scan (COLLSCAN) // scan one by one
 --------------
 Index = Shortcut to find data quickly.
-
-
-
-
-
-
-
-
-
-
+-----------
+"The combination of user + scheme must always be unique."
+This is called a Compound Unique Index.
+--------------
+user: {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "User", // Reference to the User model
+      required: true,
+    },
+    imp to know so that we can use uswer in schema for saving scheme
+----------------------
+const savedScheme = await SavedScheme.create({...});
+Both are correct, but create() is cleaner when you're just inserting a new document.
+---------------------
+async → Makes a function asynchronous.
+await → Pauses execution inside an async function until a Promise resolves.
+--------------
+Asynchronous = Don't wait, keep doing other work.
+---------------
+populate() replaces an ObjectId reference with the actual document from the referenced collection.
+------------
+req.params → Which resource?
+req.body → What data should I create/update?
+-------------
 
 
 
