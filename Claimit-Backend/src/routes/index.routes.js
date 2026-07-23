@@ -4,6 +4,7 @@ const router = express.Router();
 router.use("/auth", require("./auth.routes"));
 router.use("/schemes", require("./scheme.routes"));
 router.use("/saved-schemes", require("./savedScheme.routes"));
+router.use("/claims", require("./claim.routes"));
 // router.use("/users", require("./user.routes"));
 
 module.exports = router;

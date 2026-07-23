@@ -175,7 +175,8 @@ populate() replaces an ObjectId reference with the actual document from the refe
 req.params → Which resource?
 req.body → What data should I create/update?
 -------------
-
+trim: true generally use thuis when req
+------------
 
 
 
